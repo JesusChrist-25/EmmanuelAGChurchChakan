@@ -7,26 +7,34 @@
         body {
             margin: 0;
             padding: 0;
-            text-align: center; /* Center-align text */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers the block */
             font-family: Arial, sans-serif;
+            height: 100vh; /* Full viewport height */
+            justify-content: center; /* Vertical centering */
+        }
+        h2 {
+            margin-bottom: 20px;
         }
         ol {
-            padding: 0;
+            list-style-position: inside; /* Numbers visible */
             margin: 0;
-            text-align: left; /* Align text inside the block to the left */
-            width: 50%; /* Adjust width if necessary */
-
+            padding: 0;
+            width: fit-content; /* Matches the content width */
+            text-align: left; /* Ensures text is left-aligned */
         }
         ol li {
-            margin: 10px 0;
+            margin: 10px 0; /* Adds space between items */
         }
         a {
+            text-decoration: none;
             color: blue;
-            text-decoration: underline; /* Makes hyperlinks visible */
         }
         a:hover {
-            color: darkblue; /* Hover effect for links */
+            text-decoration: underline; /* Hover effect for links */
         }
+    
 /* For scrolling */
         h3 {
             margin-top: 50px;
