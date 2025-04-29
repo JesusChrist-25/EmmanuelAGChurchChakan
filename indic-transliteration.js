@@ -18,9 +18,6 @@ console.log("Search Query:", text);
 console.log("Transliterated Query:", IndicTransliteration.transliterate(text));
 
 
-// Example Usage
-console.log(IndicTransliteration.transliterate("namaste"));
-
 if (typeof module !== "undefined") {
     module.exports = IndicTransliteration;
 }
