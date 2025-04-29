@@ -1,10 +1,15 @@
 const IndicTransliteration = {
     mapping: {
-        "a": "अ", "b": "ब", "c": "क", "d": "द", "du": "दू", "e": "ए",
-        "f": "फ", "g": "ग", "h": "ह", "i": "इ", "j": "ज", "k": "क",
-        "l": "ल", "m": "म", "n": "न", "o": "ओ", "p": "प", "q": "क",
-        "r": "र", "s": "स", "t": "त", "u": "उ", "v": "व", "w": "व",
-        "x": "क्ष", "y": "य", "z": "ज", "ri": "री", "sa": "सा"
+        "a": "अ", "aa": "आ", "i": "इ", "ii": "ई", "u": "उ", "uu": "ऊ",
+        "e": "ए", "ai": "ऐ", "o": "ओ", "au": "औ", "ka": "क", "kha": "ख",
+        "ga": "ग", "gha": "घ", "nga": "ङ", "cha": "च", "chha": "छ",
+        "ja": "ज", "jha": "झ", "nya": "ञ", "ta": "ट", "tha": "ठ",
+        "da": "ड", "dha": "ढ", "na": "ण", "pa": "प", "pha": "फ",
+        "ba": "ब", "bha": "भ", "ma": "म", "ya": "य", "ra": "र",
+        "la": "ल", "va": "व", "sha": "श", "ssa": "ष", "sa": "स",
+        "ha": "ह", "ri": "ऋ", "dri": "दृ", "ksh": "क्ष", "gya": "ज्ञ",
+        "namaste": "नमस्ते", "dusari": "दूसरी", "sundar": "सुन्दर",
+        "bhasha": "भाषा", "vidya": "विद्या", "shanti": "शांति"
     },
 
     transliterate: function(text) {
@@ -16,5 +21,10 @@ const IndicTransliteration = {
     }
 };
 
-// Example usage
-console.log(IndicTransliteration.transliterate("dusari")); // Output: "दूसरी"
+// Example Usage
+console.log(IndicTransliteration.transliterate("namaste"));  // Output: "नमस्ते"
+console.log(IndicTransliteration.transliterate("dusari"));   // Output: "दूसरी"
+console.log(IndicTransliteration.transliterate("sundar"));   // Output: "सुन्दर"
+console.log(IndicTransliteration.transliterate("bhasha"));   // Output: "भाषा"
+console.log(IndicTransliteration.transliterate("vidya"));    // Output: "विद्या"
+console.log(IndicTransliteration.transliterate("shanti"));   // Output: "शांति"
