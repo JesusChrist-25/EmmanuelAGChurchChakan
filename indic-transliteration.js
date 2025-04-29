@@ -14,8 +14,8 @@ const IndicTransliteration = {
     }
 };
 
-console.log("Search Query:", text);
-console.log("Transliterated Query:", IndicTransliteration.transliterate(text));
+console.log("Search Query:", "dusari");
+console.log("Transliterated Query:", IndicTransliteration.transliterate("dusari"));
 
 
 if (typeof module !== "undefined") {
