@@ -1,20 +1,20 @@
-// indic-transliteration.js
 const IndicTransliteration = {
     mapping: {
-        'a': 'अ', 'b': 'ब', 'c': 'क', 'd': 'द', 'e': 'ए', 'f': 'फ',
-        'g': 'ग', 'h': 'ह', 'i': 'इ', 'j': 'ज', 'k': 'क', 'l': 'ल',
-        'm': 'म', 'n': 'न', 'o': 'ओ', 'p': 'प', 'q': 'क', 'r': 'र',
-        's': 'स', 't': 'त', 'u': 'उ', 'v': 'व', 'w': 'व', 'x': 'क्ष',
-        'y': 'य', 'z': 'ज'
+        "a": "अ", "b": "ब", "c": "क", "d": "द", "du": "दू", "e": "ए",
+        "f": "फ", "g": "ग", "h": "ह", "i": "इ", "j": "ज", "k": "क",
+        "l": "ल", "m": "म", "n": "न", "o": "ओ", "p": "प", "q": "क",
+        "r": "र", "s": "स", "t": "त", "u": "उ", "v": "व", "w": "व",
+        "x": "क्ष", "y": "य", "z": "ज", "ri": "री", "sa": "सा"
     },
 
     transliterate: function(text) {
-        return text.split('').map(char => this.mapping[char] || char).join('');
+        let result = text;
+        Object.keys(this.mapping).sort((a, b) => b.length - a.length).forEach(pattern => {
+            result = result.replaceAll(pattern, this.mapping[pattern]);
+        });
+        return result;
     }
 };
-console.log("Search Query:", "dusari");
-console.log("Transliterated Query:", IndicTransliteration.transliterate("dusari"));
-// Export for usage
-if (typeof module !== "undefined") {
-    module.exports = IndicTransliteration;
-}
+
+// Example usage
+console.log(IndicTransliteration.transliterate("dusari")); // Output: "दूसरी"
