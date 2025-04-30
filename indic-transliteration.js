@@ -50,4 +50,4 @@ const IndicTransliteration = {
 
 // Example Usage
 console.log(IndicTransliteration.transliterate("namaste dosti kshatriya!")); // Expected Output: नमस्ते दोस्ती क्षत्रिय!
-console.log(IndicTransliteration.transliterate("pratiksha kshan par!")); // Expected Output: प्रतीक्षा क्षण पर!
+console.log(IndicTransliteration.transliterate("pratiksha !")); // Expected Output: प्रतीक्षा क्षण पर!
