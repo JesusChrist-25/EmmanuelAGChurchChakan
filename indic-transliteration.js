@@ -1,39 +1,31 @@
 const IndicTransliteration = {
-    // Vowels and consonants mappings
-    vowels: {
+    // Mappings for vowels and consonants
+    mappings: {
         'a': 'अ', 'aa': 'आ', 'i': 'इ', 'ii': 'ई', 'u': 'उ', 'uu': 'ऊ',
-        'e': 'ए', 'ai': 'ऐ', 'o': 'ओ', 'au': 'औ', 'am': 'अं', 'ah': 'अः'
-    },
-    consonants: {
+        'e': 'ए', 'ai': 'ऐ', 'o': 'ओ', 'au': 'औ', 'am': 'अं', 'ah': 'अः',
         'k': 'क', 'kh': 'ख', 'g': 'ग', 'gh': 'घ', 'ng': 'ङ',
         'ch': 'च', 'chh': 'छ', 'j': 'ज', 'jh': 'झ', 'ny': 'ञ',
         't': 'ट', 'th': 'ठ', 'd': 'ड', 'dh': 'ढ', 'n': 'ण',
         'p': 'प', 'ph': 'फ', 'b': 'ब', 'bh': 'भ', 'm': 'म',
         'y': 'य', 'r': 'र', 'l': 'ल', 'v': 'व',
         'sh': 'श', 'shh': 'ष', 's': 'स', 'h': 'ह',
-        'ksh': 'क्ष', 'tr': 'त्र', 'gy': 'ज्ञ'
-    },
-    numbers: {
+        'ksh': 'क्ष', 'tr': 'त्र', 'gy': 'ज्ञ',
         '0': '०', '1': '१', '2': '२', '3': '३', '4': '४',
-        '5': '५', '6': '६', '7': '७', '8': '८', '9': '९'
-    },
-    specialCharacters: {
+        '5': '५', '6': '६', '7': '७', '8': '८', '9': '९',
         ' ': ' ', '.': '.', ',': ',', '!': '!', '?': '?'
     },
 
-    // Transliterate method
-    transliterate: function (text) {
+    // Transliterate Method
+    transliterate: function(text) {
         let transliterated = '';
-        const allMappings = { ...this.vowels, ...this.consonants, ...this.numbers, ...this.specialCharacters };
-
         while (text.length > 0) {
             let matchFound = false;
 
-            // Sort mappings by length to prioritize longer sequences
-            for (const [key, value] of Object.entries(allMappings).sort((a, b) => b[0].length - a[0].length)) {
+            // Sort mappings by length to prioritize longer syllables
+            for (const [key, value] of Object.entries(this.mappings).sort((a, b) => b[0].length - a[0].length)) {
                 if (text.startsWith(key)) {
-                    transliterated += value; // Append transliterated result
-                    text = text.slice(key.length); // Remove matched portion
+                    transliterated += value; // Append transliterated syllable
+                    text = text.slice(key.length); // Remove matched syllable from text
                     matchFound = true;
                     break;
                 }
@@ -41,11 +33,10 @@ const IndicTransliteration = {
 
             // If no match found, append unmatched character directly
             if (!matchFound) {
-                transliterated += text[0];
-                text = text.slice(1);
+                transliterated += text[0]; // Add first character from text
+                text = text.slice(1); // Remove unmatched character from text
             }
         }
-
         return transliterated;
     }
 };
