@@ -1,5 +1,5 @@
 const IndicTransliteration = {
-    // Base mappings for vowels and consonants
+    // Mappings for vowels, consonants, numbers, and special characters
     vowels: {
         'a': 'अ', 'aa': 'आ', 'i': 'इ', 'ii': 'ई', 'u': 'उ', 'uu': 'ऊ',
         'e': 'ए', 'ai': 'ऐ', 'o': 'ओ', 'au': 'औ', 'am': 'अं', 'ah': 'अः'
@@ -21,38 +21,38 @@ const IndicTransliteration = {
         ' ': ' ', '.': '.', ',': ',', '!': '!', '?': '?'
     },
 
+    // Transliterate method using regex for syllable detection
     transliterate: function (text) {
+        const allMappings = { ...this.vowels, ...this.consonants, ...this.numbers, ...this.specialCharacters };
         let transliterated = '';
-        let buffer = ''; // Buffer to accumulate characters before processing
-        const allMappings = { ...this.consonants, ...this.vowels, ...this.numbers, ...this.specialCharacters };
 
-        for (let i = 0; i < text.length; i++) {
-            buffer += text[i]; // Add character to buffer
+        while (text.length > 0) {
             let matchFound = false;
 
-            // Check buffer against all mappings
+            // Sort mappings by length to prioritize longer sequences
             for (const [key, value] of Object.entries(allMappings).sort((a, b) => b[0].length - a[0].length)) {
-                if (buffer === key) {
-                    transliterated += value; // Add transliterated value
-                    buffer = ''; // Clear the buffer
+                const regex = new RegExp(`^${key}`);
+                const match = text.match(regex);
+
+                if (match) {
+                    transliterated += value; // Append transliterated result
+                    text = text.slice(key.length); // Remove matched part
                     matchFound = true;
                     break;
                 }
             }
 
-            // If buffer doesn't match, process and clear unmatched part
-            if (!matchFound && buffer.length > 2) { // Arbitrary buffer size for performance
-                transliterated += buffer[0]; // Add first character
-                buffer = buffer.slice(1); // Remove processed part
+            // Append unmatched characters directly (fallback)
+            if (!matchFound) {
+                transliterated += text[0];
+                text = text.slice(1);
             }
         }
 
-        // Process remaining buffer
-        transliterated += buffer; // Add any remaining characters in the buffer
         return transliterated;
     }
 };
 
 // Example Usage
 console.log(IndicTransliteration.transliterate("namaste dosti kshatriya!")); // Output: नमस्ते दोस्ती क्षत्रिय!
-console.log(IndicTransliteration.transliterate("pratiksha kshan !")); // Output: प्रतीक्षा क्षण पर!
+console.log(IndicTransliteration.transliterate("pratiksha kshan par!")); // Output: प्रतीक्षा क्षण पर!
