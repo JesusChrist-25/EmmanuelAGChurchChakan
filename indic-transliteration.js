@@ -1,5 +1,5 @@
 const IndicTransliteration = {
-    // Mappings for vowels, consonants, numbers, and special characters
+    // Vowels and consonants mappings
     vowels: {
         'a': 'अ', 'aa': 'आ', 'i': 'इ', 'ii': 'ई', 'u': 'उ', 'uu': 'ऊ',
         'e': 'ए', 'ai': 'ऐ', 'o': 'ओ', 'au': 'औ', 'am': 'अं', 'ah': 'अः'
@@ -21,28 +21,25 @@ const IndicTransliteration = {
         ' ': ' ', '.': '.', ',': ',', '!': '!', '?': '?'
     },
 
-    // Transliterate method using regex for syllable detection
+    // Transliterate method
     transliterate: function (text) {
-        const allMappings = { ...this.vowels, ...this.consonants, ...this.numbers, ...this.specialCharacters };
         let transliterated = '';
+        const allMappings = { ...this.vowels, ...this.consonants, ...this.numbers, ...this.specialCharacters };
 
         while (text.length > 0) {
             let matchFound = false;
 
             // Sort mappings by length to prioritize longer sequences
             for (const [key, value] of Object.entries(allMappings).sort((a, b) => b[0].length - a[0].length)) {
-                const regex = new RegExp(`^${key}`);
-                const match = text.match(regex);
-
-                if (match) {
+                if (text.startsWith(key)) {
                     transliterated += value; // Append transliterated result
-                    text = text.slice(key.length); // Remove matched part
+                    text = text.slice(key.length); // Remove matched portion
                     matchFound = true;
                     break;
                 }
             }
 
-            // Append unmatched characters directly (fallback)
+            // If no match found, append unmatched character directly
             if (!matchFound) {
                 transliterated += text[0];
                 text = text.slice(1);
