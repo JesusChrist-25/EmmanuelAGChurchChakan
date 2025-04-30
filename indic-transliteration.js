@@ -30,27 +30,30 @@ const IndicTransliteration = {
     },
 
     transliterate: function(text) {
-        return text.split(/(\s+)/).map(word => {
-            // Match multi-character mappings first (e.g., 'aa', 'chh') before single characters
-            let transliteratedWord = '';
-            while (word.length > 0) {
-                let matched = false;
-                for (const [key, value] of Object.entries(this.mapping).sort((a, b) => b[0].length - a[0].length)) {
-                    if (word.startsWith(key)) {
-                        transliteratedWord += value;
-                        word = word.slice(key.length);
-                        matched = true;
-                        break;
-                    }
-                }
-                if (!matched) {
-                    transliteratedWord += word[0]; // Append unmatched character as-is
-                    word = word.slice(1);
+    // Split the input into words (spaces preserved)
+    return text.split(/(\s+)/).map(word => {
+        let transliteratedWord = '';
+        while (word.length > 0) {
+            let matched = false;
+            // Sort mappings by length to prioritize longer sequences (e.g., 'ksh', 'aa')
+            for (const [key, value] of Object.entries(this.mapping).sort((a, b) => b[0].length - a[0].length)) {
+                if (word.startsWith(key)) {
+                    transliteratedWord += value; // Add the mapped character(s)
+                    word = word.slice(key.length); // Remove processed portion of the word
+                    matched = true;
+                    break;
                 }
             }
-            return transliteratedWord;
-        }).join('');
-    }
+            // If no match found, add the character as-is and move forward
+            if (!matched) {
+                transliteratedWord += word[0];
+                word = word.slice(1);
+            }
+        }
+        return transliteratedWord;
+    }).join('');
+}
+
 };
 
 // Example Usage
