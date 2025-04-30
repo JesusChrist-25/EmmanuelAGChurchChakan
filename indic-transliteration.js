@@ -30,28 +30,27 @@ const IndicTransliteration = {
     },
 
     transliterate: function(text) {
-    return text.split(/(\s+)/).map(word => {
-        let transliteratedWord = '';
-        while (word.length > 0) {
-            let matched = false;
-            for (const [key, value] of Object.entries(this.mapping).sort((a, b) => b[0].length - a[0].length)) {
-                if (word.startsWith(key)) {
-                    transliteratedWord += value;
-                    word = word.slice(key.length);
-                    matched = true;
-                    break;
+        return text.split(/(\s+)/).map(word => {
+            let transliteratedWord = '';
+            while (word.length > 0) {
+                let matched = false;
+                for (const [key, value] of Object.entries(this.mapping).sort((a, b) => b[0].length - a[0].length)) {
+                    if (word.startsWith(key)) {
+                        transliteratedWord += value;
+                        word = word.slice(key.length);
+                        matched = true;
+                        break;
+                    }
+                }
+                if (!matched) {
+                    transliteratedWord += word[0]; // Append unmatched character
+                    word = word.slice(1);
                 }
             }
-            if (!matched) {
-                transliteratedWord += word[0]; // Append unmatched character
-                word = word.slice(1);
-            }
-        }
-        return transliteratedWord;
-    }).join('');
-}
+            return transliteratedWord;
+        }).join('');
+    }
+};
 
 // Example Usage
 console.log(IndicTransliteration.transliterate("namaste dosti kshatriya!"));
-
-
