@@ -52,13 +52,15 @@ const IndicTransliteration = {
         }
         return transliteratedWord;
     }).join('');
+
+        console.log("Processing word:", word);
+console.log("Matched mapping:", key, " -> ", value);
+console.log("Remaining input:", word);
 }
 
 };
 
 // Example Usage
 console.log(IndicTransliteration.transliterate("namaste dosti kshatriya!"));
-console.log("Processing word:", word);
-console.log("Matched mapping:", key, " -> ", value);
-console.log("Remaining input:", word);
+
 
