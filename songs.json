@@ -1,7 +1,4 @@
-{
-    "title": "Emmanuel A.G. Church Chakan",
-    "subtitle": "Worship Songs",
-    "songs": [
+[
         {
             "id": 1,
             "title": "तू मेरा बल, तू मेरी ढाल",
@@ -44,4 +41,3 @@
             ]
         }
     ]
-}
