@@ -50,39 +50,49 @@
     <script>
         let songs = [];
 
-        // Fetch song list from JSON file
-        fetch("https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/songs.json")
-            .then(response => response.json())
-            .then(data => {
-                songs = data;
-                displayIndex();
-            })
-            .catch(error => console.error("Error loading songs:", error));
+// Load songs from JSON file
+fetch("songs.json")
+    .then(response => response.json())
+    .then(data => {
+        songs = data.songs;
+        displayAllStories();  // Load all lyrics at once
+        displayIndex();  // Show index
+    })
+    .catch(error => console.error("Error loading songs:", error));
 
-        function displayIndex() {
-            const indexContainer = document.getElementById('indexContainer');
-            indexContainer.innerHTML = '';
+// Function to Display Full Song List (Scrollable)
+function displayAllStories() {
+    const songContainer = document.getElementById('songContainer');
+    songContainer.innerHTML = '';
 
-            songs.forEach((song, index) => {
-                const indexItem = document.createElement('div');
-                indexItem.className = 'index-item';
-                indexItem.innerHTML = `<a href="javascript:displaySong(${index + 1})">${index + 1}. ${song.title}</a>`;
-                indexContainer.appendChild(indexItem);
-            });
-        }
+    songs.forEach((song, index) => {
+        const songElement = document.createElement('div');
+        songElement.className = 'song';
+        songElement.id = `story-${index + 1}`;
+        songElement.innerHTML = `<span class="song-title">${index + 1}. ${song.title}</span>
+                                 <pre>${song.lyrics.join("\n")}</pre>`;
+        songContainer.appendChild(songElement);
+    });
+}
 
-        function displaySong(index) {
-            const songContainer = document.getElementById('songContainer');
-            songContainer.innerHTML = '';
+// Function to Display Index (Jump to Lyrics on Click)
+function displayIndex() {
+    const indexContainer = document.getElementById('indexContainer');
+    indexContainer.innerHTML = '';
 
-            const song = songs[index - 1];
-            if (song) {
-                songContainer.innerHTML = `<div class="song">
-                    <span class="song-title">${index}. ${song.title}</span>
-                    <pre>${song.lyrics}</pre>
-                </div>`;
-            }
-        }
+    songs.forEach((song, index) => {
+        const indexItem = document.createElement('div');
+        indexItem.className = 'index-item';
+        indexItem.innerHTML = `<a href="javascript:scrollToStory(${index + 1})">${index + 1}. ${song.title}</a>`;
+        indexContainer.appendChild(indexItem);
+    });
+}
+
+// Smooth Scroll to Selected Song
+function scrollToStory(index) {
+    document.getElementById(`story-${index}`).scrollIntoView({ behavior: "smooth" });
+}
+
     </script>
 
 </body>
