@@ -47,20 +47,61 @@
     <h2>Song Lyrics</h2>
     <div id="songContainer"></div>
 
+
+//https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/songs.json
     <script>
-        let songs = [];
+        const INDEX_PAGE_SIZE = 5;  // Show 5 songs per index page
+let currentIndexPage = 1;
+let songs = [];
 
 // Load songs from JSON file
 fetch("https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/songs.json")
     .then(response => response.json())
     .then(data => {
         songs = data.songs;
-        displayAllStories();  // Load all lyrics at once
-        displayIndex();  // Show index
+        displayIndex();
+        displayAllStories(); // Load all lyrics
     })
     .catch(error => console.error("Error loading songs:", error));
 
-// Function to Display Full Song List (Scrollable)
+// Function to Display Paginated Index
+function displayIndex(page = 1) {
+    currentIndexPage = page;
+    const indexContainer = document.getElementById('indexContainer');
+    indexContainer.innerHTML = '';
+
+    const startIndex = (page - 1) * INDEX_PAGE_SIZE;
+    const endIndex = Math.min(startIndex + INDEX_PAGE_SIZE, songs.length);
+
+    songs.slice(startIndex, endIndex).forEach((song, index) => {
+        const indexItem = document.createElement('div');
+        indexItem.className = 'index-item';
+        indexItem.innerHTML = `<a href="javascript:scrollToStory(${startIndex + index + 1})">${startIndex + index + 1}. ${song.title}</a>`;
+        indexContainer.appendChild(indexItem);
+    });
+
+    updatePaginationControls();
+}
+
+// Function to Update Index Pagination Controls
+function updatePaginationControls() {
+    const indexPagination = document.getElementById('indexPagination');
+    indexPagination.innerHTML = '';
+
+    const totalIndexPages = Math.ceil(songs.length / INDEX_PAGE_SIZE);
+
+    if (currentIndexPage > 1) {
+        indexPagination.innerHTML += `<button onclick="displayIndex(currentIndexPage - 1)">Back</button>`;
+    }
+
+    indexPagination.innerHTML += `<button disabled>${currentIndexPage}</button>`;
+
+    if (currentIndexPage < totalIndexPages) {
+        indexPagination.innerHTML += `<button onclick="displayIndex(currentIndexPage + 1)">Next</button>`;
+    }
+}
+
+// Function to Load Full List of Songs (Scrollable)
 function displayAllStories() {
     const songContainer = document.getElementById('songContainer');
     songContainer.innerHTML = '';
@@ -75,20 +116,7 @@ function displayAllStories() {
     });
 }
 
-// Function to Display Index (Jump to Lyrics on Click)
-function displayIndex() {
-    const indexContainer = document.getElementById('indexContainer');
-    indexContainer.innerHTML = '';
-
-    songs.forEach((song, index) => {
-        const indexItem = document.createElement('div');
-        indexItem.className = 'index-item';
-        indexItem.innerHTML = `<a href="javascript:scrollToStory(${index + 1})">${index + 1}. ${song.title}</a>`;
-        indexContainer.appendChild(indexItem);
-    });
-}
-
-// Smooth Scroll to Selected Song
+// Function to Scroll to Selected Song
 function scrollToStory(index) {
     document.getElementById(`story-${index}`).scrollIntoView({ behavior: "smooth" });
 }
