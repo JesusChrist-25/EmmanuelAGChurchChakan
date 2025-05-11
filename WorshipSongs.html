@@ -240,24 +240,27 @@ document.querySelector('.carousel-container').addEventListener('touchend', (even
 });
 
 
-        function handleSwipe() {
-    const swipeThreshold = 50; // Minimum distance for valid swipe
+       function handleSwipe() {
+    const swipeThreshold = 50; // Minimum distance for swipe
     const swipeDistance = touchEndX - touchStartX;
 
-    console.log(`Swipe distance: ${swipeDistance}`); // Debugging line
-    console.log(`Current index before swipe: ${currentIndex}`);
+    if (Math.abs(swipeDistance) < swipeThreshold) return; // Ignore small swipes
 
-    if (Math.abs(swipeDistance) < swipeThreshold) return; // Ignore small movements
-
+    // Prevent accidental double transition
+    let newIndex = currentIndex;
     if (swipeDistance > 0 && currentIndex > 0) {
-        currentIndex--;
+        newIndex = currentIndex - 1;
     } else if (swipeDistance < 0 && currentIndex < songs.length - 1) {
-        currentIndex++;
+        newIndex = currentIndex + 1;
     }
 
-    console.log(`Updated index after swipe: ${currentIndex}`); // Debugging line
-    updateSlide();
+    // Ensure we update only if there's a valid change
+    if (newIndex !== currentIndex) {
+        currentIndex = newIndex;
+        updateSlide();
+    }
 }
+
 
 
 
@@ -337,9 +340,14 @@ function updatePaginationControls() {
 function scrollToStory(index) {
     currentIndex = songs.findIndex(song => song.id === index);
 
-    displayCarousel(); // Ensure correct lyrics are displayed
-    updateSlide(); // Sync with swipe behavior
+    // Reset swipe tracking variables to avoid double movement
+    touchStartX = 0;
+    touchEndX = 0;
+
+    displayCarousel(); // Ensure lyrics update
+    updateSlide(); // Sync navigation correctly
 }
+
 function updateSlide() {
     const carousel = document.querySelector('.carousel');
     carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
