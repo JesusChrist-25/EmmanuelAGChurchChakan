@@ -98,14 +98,14 @@
 
         // Display songs in carousel
         function displayCarousel() {
-            const songCarousel = document.getElementById('songCarousel');
-            songCarousel.innerHTML = songs.map((song, index) => `
-                <div class="song">
-                    <h2>${song.title}</h2>
-                    <pre>${song.lyrics.join("\n")}</pre>
-                </div>
-            `).join('');
-        }
+    const songCarousel = document.getElementById('songCarousel');
+    songCarousel.innerHTML = songs.map(song => `
+        <div class="song">
+            <h2>${song.id}. ${song.title}</h2> <!-- Uses ID from JSON -->
+            <pre>${song.lyrics.join("\n")}</pre>
+        </div>
+    `).join('');
+}
 
         // Navigate songs
         function updateSlide() {
