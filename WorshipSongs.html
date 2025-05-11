@@ -51,18 +51,19 @@
 
         /* Fix index visibility */
         #indexContainer {
-           
-            display: grid;
-           grid-template-columns: repeat(2, 1fr);
-  grid-auto-flow: column; /* This ensures vertical flow */
-  column-gap: 10px; /* Adjust space between columns */
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    max-width: 600px;
+    margin: auto;
+}
 
-            gap: 10px;
-            max-width: 600px;
-            margin: auto;
-            padding-left: 20px;
-        
-                }
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
         .index-item {
     text-align: left;
             
@@ -307,21 +308,32 @@ let currentIndexPage = 1;
 
 function displayIndex(page = 1) {
     currentIndexPage = page;
-    const indexContainer = document.getElementById('indexContainer');
-    indexContainer.innerHTML = '';
+    const indexContainer = document.getElementById("indexContainer");
+    indexContainer.innerHTML = "";
 
     const startIndex = (page - 1) * INDEX_PAGE_SIZE;
     const endIndex = Math.min(startIndex + INDEX_PAGE_SIZE, songs.length);
 
-    let indexHTML = '';
+    const leftColumn = [];
+    const rightColumn = [];
+
     songs.slice(startIndex, endIndex).forEach((song, index) => {
-        indexHTML += `<div class="index-item"><a href="javascript:scrollToStory(${startIndex + index + 1})">${startIndex + index + 1}. ${song.title}</a></div>`;
+        const songText = `<div class="index-item"><a href="javascript:scrollToStory(${startIndex + index + 1})">
+            ${startIndex + index + 1}. ${song.title}</a></div>`;
+        
+        if (index % 2 === 0) {
+            leftColumn.push(songText);
+        } else {
+            rightColumn.push(songText);
+        }
     });
 
-    indexContainer.innerHTML = indexHTML;
-
-    updatePaginationControls();
+    indexContainer.innerHTML = `
+        <div class="column">${leftColumn.join("")}</div>
+        <div class="column">${rightColumn.join("")}</div>
+    `;
 }
+
 
 function updatePaginationControls() {
     const indexPagination = document.getElementById('indexPagination');
