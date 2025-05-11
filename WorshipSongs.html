@@ -127,9 +127,25 @@
 }
 
 .lyrics-block {
+    display: flex;
+    justify-content: center; /* Centers content inside the block */
+    align-items: center;
+    text-align: center; /* Ensures text inside is centered */
+    width: 80%; /* Adjust width */
+    max-width: 800px;
+    padding: 15px;
     background: rgba(0, 0, 0, 0.5);
-    align:center
+    color: white;
+    border-radius: 10px;
 }
+
+/* Ensure lyrics text stays centered */
+pre {
+    text-align: center; 
+    width: 100%; /* Prevents shifting to the right */
+    margin: 0 auto; /* Centers content */
+}
+
 
 
     </style>
