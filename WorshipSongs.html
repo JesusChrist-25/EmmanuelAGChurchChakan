@@ -146,7 +146,7 @@
         }
 
         // Function to Display Index
-        const INDEX_PAGE_SIZE = 20; // Show 20 songs per page
+        const INDEX_PAGE_SIZE = 20;
 let currentIndexPage = 1;
 
 function displayIndex(page = 1) {
@@ -172,16 +172,32 @@ function updatePaginationControls() {
     indexPagination.innerHTML = '';
 
     const totalIndexPages = Math.ceil(songs.length / INDEX_PAGE_SIZE);
+    let paginationHTML = '';
 
+    // Back Button
     if (currentIndexPage > 1) {
-        indexPagination.innerHTML += `<button onclick="displayIndex(currentIndexPage - 1)">Back</button>`;
+        paginationHTML += `<button onclick="displayIndex(currentIndexPage - 1)">Back</button>`;
     }
 
-    indexPagination.innerHTML += `<button disabled>${currentIndexPage}</button>`;
+    // Numbered Page Buttons (Show 1-5 or Adjust for Current Position)
+    const startPage = Math.max(1, currentIndexPage - 2);
+    const endPage = Math.min(totalIndexPages, startPage + 4);
 
+    for (let i = startPage; i <= endPage; i++) {
+        paginationHTML += `<button onclick="displayIndex(${i})" ${i === currentIndexPage ? 'disabled' : ''}>${i}</button>`;
+    }
+
+    // Next Button
     if (currentIndexPage < totalIndexPages) {
-        indexPagination.innerHTML += `<button onclick="displayIndex(currentIndexPage + 1)">Next</button>`;
+        paginationHTML += `<button onclick="displayIndex(currentIndexPage + 1)">Next</button>`;
     }
+
+    // "Go to Page" Dropdown
+    paginationHTML += `<select onchange="displayIndex(parseInt(this.value))">
+        ${Array.from({ length: totalIndexPages }, (_, i) => `<option value="${i + 1}" ${i + 1 === currentIndexPage ? 'selected' : ''}>${i + 1}</option>`).join('')}
+    </select>`;
+
+    indexPagination.innerHTML = paginationHTML;
 }
 
 
