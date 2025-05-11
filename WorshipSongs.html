@@ -198,17 +198,19 @@ pre {
 
         // Fetch songs from JSON
         fetch("https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/songs.json")
-            .then(response => response.json())
-            .then(data => {
-                if (data.songs) {
-                    songs = data.songs;
-                    displayCarousel();
-                    displayIndex(); // Ensure index loads
-                } else {
-                    console.error("Invalid JSON structure: Missing 'songs' key");
-                }
-            })
-            .catch(error => console.error("Error loading songs:", error));
+    .then(response => response.json())
+    .then(data => {
+        if (data.songs) {
+            songs = data.songs;
+            displayCarousel();
+            displayIndex();
+            currentIndex = 0; // Set default to first song
+            updateSlide(); // Ensure highlighting works
+        } else {
+            console.error("Invalid JSON structure: Missing 'songs' key");
+        }
+    })
+    .catch(error => console.error("Error loading songs:", error));
 
         // Display songs in carousel
         function displayCarousel() {
@@ -227,15 +229,15 @@ pre {
     carousel.style.transition = "transform 0.4s ease-in-out";
     carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
 
-    // Update active index styling
     document.querySelectorAll('.index-item a').forEach((link, i) => {
         if (i === currentIndex) {
-            link.classList.add('active'); // Highlight the current song
+            link.classList.add('active'); // Highlight the first song
         } else {
-            link.classList.remove('active'); // Remove highlight from others
+            link.classList.remove('active');
         }
     });
 }
+
 
 
        
