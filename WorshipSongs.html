@@ -236,23 +236,21 @@ pre {
         function handleSwipe() {
     const swipeThreshold = 50; // Minimum swipe distance to trigger change
     if (touchEndX - touchStartX > swipeThreshold && currentIndex > 0) {
-        prevSlide(); // Swipe right (Previous song)
+        prevSlide(); // Move to previous song
     } else if (touchStartX - touchEndX > swipeThreshold && currentIndex < songs.length - 1) {
-        nextSlide(); // Swipe left (Next song)
+        nextSlide(); // Move to next song
     }
 }
 function nextSlide() {
     if (currentIndex < songs.length - 1) {
-        currentIndex++; // Move one song forward
-        displayCarousel(); // Ensure content updates
+        currentIndex += 1; // Move forward one step
         updateSlide();
     }
 }
 
 function prevSlide() {
     if (currentIndex > 0) {
-        currentIndex--; // Move one song backward
-        displayCarousel();
+        currentIndex -= 1; // Move backward one step
         updateSlide();
     }
 }
