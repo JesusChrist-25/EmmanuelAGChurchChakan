@@ -348,19 +348,6 @@ function scrollToStory(index) {
     updateSlide(); // Sync navigation correctly
 }
 
-function updateSlide() {
-    const carousel = document.querySelector('.carousel');
-    carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
-}
-document.querySelector('.carousel-container').addEventListener('touchstart', (event) => {
-    touchStartX = event.touches[0].clientX;
-});
-
-document.querySelector('.carousel-container').addEventListener('touchend', (event) => {
-    touchEndX = event.changedTouches[0].clientX;
-    handleSwipe();
-});
-
     </script>
 
 </body>
