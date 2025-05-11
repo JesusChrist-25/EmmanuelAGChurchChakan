@@ -27,6 +27,18 @@
         .index-item {
     text-align: left;
 }
+.index-item a {
+    text-decoration: none;
+    color: transparent; /* Hide link text */
+    pointer-events: none; /* Prevent clicking while hidden */
+}
+
+.index-item:hover a,
+.index-item:focus-within a {
+    color: black; /* Show link when hovered or focused */
+    text-decoration: underline;
+    pointer-events: auto; /* Restore click functionality */
+}
 
 
         /* Carousel styling */
