@@ -19,7 +19,17 @@
             min-height: 200px; /* Ensures visibility */
             border: 1px solid #ccc; /* Helps debug layout */
             padding: 10px;
-        }
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns */
+            gap: 10px;
+            max-width: 600px;
+            margin: auto;
+        
+                }
+        .index-item {
+    text-align: left;
+}
+
 
         /* Carousel styling */
         .carousel-container {
@@ -136,14 +146,44 @@
         }
 
         // Function to Display Index
-        function displayIndex() {
-            const indexContainer = document.getElementById('indexContainer');
-            indexContainer.innerHTML = songs.map((song, index) => `
-                <div class="index-item">
-                    <a href="javascript:scrollToStory(${index + 1})">${index + 1}. ${song.title}</a>
-                </div>
-            `).join('');
-        }
+        const INDEX_PAGE_SIZE = 20; // Show 20 songs per page
+let currentIndexPage = 1;
+
+function displayIndex(page = 1) {
+    currentIndexPage = page;
+    const indexContainer = document.getElementById('indexContainer');
+    indexContainer.innerHTML = '';
+
+    const startIndex = (page - 1) * INDEX_PAGE_SIZE;
+    const endIndex = Math.min(startIndex + INDEX_PAGE_SIZE, songs.length);
+
+    let indexHTML = '';
+    songs.slice(startIndex, endIndex).forEach((song, index) => {
+        indexHTML += `<div class="index-item"><a href="javascript:scrollToStory(${startIndex + index + 1})">${startIndex + index + 1}. ${song.title}</a></div>`;
+    });
+
+    indexContainer.innerHTML = indexHTML;
+
+    updatePaginationControls();
+}
+
+function updatePaginationControls() {
+    const indexPagination = document.getElementById('indexPagination');
+    indexPagination.innerHTML = '';
+
+    const totalIndexPages = Math.ceil(songs.length / INDEX_PAGE_SIZE);
+
+    if (currentIndexPage > 1) {
+        indexPagination.innerHTML += `<button onclick="displayIndex(currentIndexPage - 1)">Back</button>`;
+    }
+
+    indexPagination.innerHTML += `<button disabled>${currentIndexPage}</button>`;
+
+    if (currentIndexPage < totalIndexPages) {
+        indexPagination.innerHTML += `<button onclick="displayIndex(currentIndexPage + 1)">Next</button>`;
+    }
+}
+
 
         // Scroll to selected song
         function scrollToStory(index) {
