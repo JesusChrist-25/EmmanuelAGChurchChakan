@@ -5,14 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emmanuel A.G. Church Chakan Pune</title>
     <style>
+
+        body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png') no-repeat center center fixed;
+    background-size: cover;
+    color: white; /* Adjust text for readability */
+}
+
+/* Title Section */
+#title-section {
+    background: rgba(0, 0, 0, 0.6); /* Adds overlay to improve text visibility */
+    padding: 20px;
+    width: 100%;
+}
+
+/* Index Section */
+#index-section {
+    background: rgba(255, 255, 255, 0.8); /* Slight transparency */
+    padding: 15px;
+    width: 100%;
+    color: black;
+}
+
+/* Lyrics Section */
+#lyrics-section {
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    padding: 15px;
+    width: 100%;
+}
+
         body {
             font-family: Arial, sans-serif;
             margin: 10px;
             text-align: center;
            background: linear-gradient(to bottom, #f6d365, #fda085);
-
-
-
         }
         h1 {
             text-align: center;
@@ -81,11 +111,17 @@
 </head>
 <body>
 
+    <div id="title-section" class="section">
     <h1>Emmanuel A.G. Church Chakan Pune</h1>
+</div>
+<div id="index-section" class="section">
+
     
     <h2>Song Index</h2>
     <div id="indexContainer" class="index-container"></div>
     <div id="indexPagination" class="pagination"></div>
+</div>
+<div id="lyrics-section" class="section">
 
     <h2>Song Lyrics</h2>
     <div class="carousel-container">
@@ -96,6 +132,7 @@
         <button onclick="prevSlide()">Back</button>
         <button onclick="nextSlide()">Next</button>
     </div>
+</div>
 
     <script src="songs.js"></script> <!-- Your existing script -->
     <script>
