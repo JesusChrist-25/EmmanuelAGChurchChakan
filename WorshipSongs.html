@@ -220,11 +220,10 @@ pre {
         // Navigate songs
         function updateSlide() {
     const carousel = document.querySelector('.carousel');
-    carousel.style.transition = "transform 0.5s ease-in-out"; // Smooth transition
+    carousel.style.transition = "transform 0.4s ease-in-out"; // Smooth transition
     carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
 }
-
-        
+       
 
         // Enable swipe gestures for mobile
         document.querySelector('.carousel-container').addEventListener('touchstart', (event) => {
@@ -238,29 +237,32 @@ pre {
 
         function handleSwipe() {
     const swipeThreshold = 50; // Minimum swipe distance to trigger change
+    const swipeDistance = touchEndX - touchStartX;
 
-    if (touchEndX - touchStartX > swipeThreshold && currentIndex > 0) {
-        currentIndex--; // Move ONE song back
-    } else if (touchStartX - touchEndX > swipeThreshold && currentIndex < songs.length - 1) {
-        currentIndex++; // Move ONE song forward
+    if (Math.abs(swipeDistance) < swipeThreshold) return; // Ignore small movements
+
+    if (swipeDistance > 0 && currentIndex > 0) {
+        prevSlide(); // Swipe right (Previous song)
+    } else if (swipeDistance < 0 && currentIndex < songs.length - 1) {
+        nextSlide(); // Swipe left (Next song)
     }
-
-    updateSlide(); // Apply changes to carousel position
 }
+
 
 function nextSlide() {
     if (currentIndex < songs.length - 1) {
-        currentIndex += 1; // Move forward one step
+        currentIndex += 1; // Move only one step forward
         updateSlide();
     }
 }
 
 function prevSlide() {
     if (currentIndex > 0) {
-        currentIndex -= 1; // Move backward one step
+        currentIndex -= 1; // Move only one step backward
         updateSlide();
     }
 }
+
 
 
         // Function to Display Index
