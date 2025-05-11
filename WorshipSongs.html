@@ -1,393 +1,361 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emmanuel A.G. Church Chakan Pune</title>
-    <style>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Emmanuel A.G. Church Chakan Pune</title>
+        <style>
+            body {
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png") no-repeat center center fixed;
+                background-size: cover;
+                color: Black; /* Adjust text for readability */
+                font-family: Arial, sans-serif;
 
-        body {
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png') no-repeat center center fixed;
-    background-size: cover;
-    color: Black; /* Adjust text for readability */
-            font-family: Arial, sans-serif;
-            
-            margin: 10px;
-            text-align: center;
-          
-            
-}
+                margin: 10px;
+                text-align: center;
+            }
 
-/* Title Section */
-#title-section {
-   // background: rgba(0, 0, 0, 0.6); /* Adds overlay to improve text visibility */
-    padding: 10px;
-    width: 100%;
-}
+            /* Title Section */
+            #title-section {
+                // background: rgba(0, 0, 0, 0.6); /* Adds overlay to improve text visibility */
+                padding: 10px;
+                width: 100%;
+            }
 
-/* Index Section */
-#index-section {
-  //  background: rgba(255, 255, 255, 0.8); /* Slight transparency */
-    padding: 5px;
-    width: 100%;
-    color: black;
-}
+            /* Index Section */
+            #index-section {
+                //  background: rgba(255, 255, 255, 0.8); /* Slight transparency */
+                padding: 5px;
+                width: 100%;
+                color: black;
+            }
 
-/* Lyrics Section */
-#lyrics-section {
-  //  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
-    padding: 5px;
-    width: 100%;
-}
+            /* Lyrics Section */
+            #lyrics-section {
+                //  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+                padding: 5px;
+                width: 100%;
+            }
 
-       
-        h1 {
-            text-align: center;
-        }
+            h1 {
+                text-align: center;
+            }
 
-        /* Fix index visibility */
-        #indexContainer {
-           
-           display: grid;
-    grid-template-columns: 1fr 1fr; /* Remove the comma */
-    /*grid-auto-flow: column; /* Ensures vertical numbering */
-    column-gap: 10px; /* Space between columns */
-    gap: 10px;
-    max-width: 600px;
-    margin: auto;
-    padding-left: 20px;
+            /* Fix index visibility */
+            #indexContainer {
+                display: grid;
+                grid-template-columns: 1fr 1fr; /* Remove the comma */
+                /*grid-auto-flow: column; /* Ensures vertical numbering */
+                column-gap: 10px; /* Space between columns */
+                gap: 10px;
+                max-width: 600px;
+                margin: auto;
+                padding-left: 20px;
+            }
+            .index-item {
+                text-align: left;
+            }
+            .index-item a {
+                text-decoration: none; /* Removes underline by default */
+                color: black; /* Keep visible */
+            }
 
-        
-                }
-        .index-item {
-    text-align: left;
-            
-}
-.index-item a {
-    text-decoration: none; /* Removes underline by default */
-    color: black; /* Keep visible */
-}
+            .index-item a:hover,
+            .index-item a:focus {
+                text-decoration: underline; /* Add underline only on hover or focus */
+            }
+            .index-item a.active {
+                text-decoration: underline;
+                font-weight: bold;
+                color: blue;
+            }
 
-.index-item a:hover,
-.index-item a:focus {
-    text-decoration: underline; /* Add underline only on hover or focus */
-}
-.index-item a.active {
-    text-decoration: underline;
-    font-weight: bold;
-    color: blue;
-}
+            /* Carousel styling */
+            .carousel-container {
+                overflow: hidden;
+                width: 100vw;
+                position: relative;
+            }
+            .carousel {
+                display: flex;
+                transition: transform 0.5s ease-in-out;
+            }
+            .song {
+                min-width: 100vw; /* Full screen per song */
+                padding: 10px;
+                box-sizing: border-box;
+                text-align: center;
+            }
 
+            /* Navigation Buttons */
+            .controls {
+                text-align: center;
+                margin-top: 10px;
+            }
+            .controls button {
+                margin: 5px;
+                padding: 10px 15px;
+            }
+            pre {
+                font-family: "Georgia", serif; /* Choose a readable font */
+                font-size: 17px; /* Adjust size for clarity */
+                font-weight: normal; /* Customize thickness */
+                line-height: 1.5; /* Improve spacing */
+                color: #222; /* Adjust text color */
+            }
 
-        /* Carousel styling */
-        .carousel-container {
-            overflow: hidden;
-            width: 100vw;
-            position: relative;
-        }
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .song {
-            min-width: 100vw; /* Full screen per song */
-            padding: 10px;
-            box-sizing: border-box;
-            text-align: center;
-        }
+            .container {
+                display: flex;
+                flex-direction: column; /* Stack blocks vertically */
+                align-items: center;
+                gap: 20px; /* Space between sections */
+            }
 
-        /* Navigation Buttons */
-        .controls {
-            text-align: center;
-            margin-top: 10px;
-        }
-        .controls button {
-            margin: 5px;
-            padding: 10px 15px;
-        }
-        pre {
-    font-family: "Georgia", serif; /* Choose a readable font */
-    font-size: 17px; /* Adjust size for clarity */
-    font-weight: normal; /* Customize thickness */
-    line-height: 1.5; /* Improve spacing */
-    color: #222; /* Adjust text color */
-}
+            .index-block,
+            .lyrics-block {
+                width: 80%; /* Adjust width for balance */
+                max-width: 800px;
+                padding: 15px;
+                border-radius: 10px;
+            }
 
- .container {
-    display: flex;
-    flex-direction: column; /* Stack blocks vertically */
-    align-items: center;
-    gap: 20px; /* Space between sections */
-}
+            .index-block {
+                background: rgba(255, 255, 255, 0.8);
+            }
 
-.index-block, .lyrics-block {
-    width: 80%; /* Adjust width for balance */
-    max-width: 800px;
-    padding: 15px;
-    border-radius: 10px;
-}
+            .lyrics-block {
+                display: flex;
+                flex-direction: column; /* Stack title & lyrics vertically */
+                justify-content: center; /* Center content */
+                align-items: center;
+                text-align: center;
+                width: 80%; /* Allow flexibility */
+                max-width: 800px;
+                min-height: 300px; /* Prevent squeezing */
+                padding: 15px;
+                background: rgba(0, 0, 0, 0.5);
+                color: white;
+                border-radius: 10px;
+            }
 
-.index-block {
-    background: rgba(255, 255, 255, 0.8);
-}
+            /* Ensure lyrics text stays centered */
+            pre {
+                text-align: center;
+                width: 100%;
+                margin: 0 auto;
+                white-space: pre-wrap; /* Wrap text properly */
+                word-wrap: break-word; /* Prevent overflow */
+            }
 
-.lyrics-block {
-    display: flex;
-    flex-direction: column; /* Stack title & lyrics vertically */
-    justify-content: center; /* Center content */
-    align-items: center;
-    text-align: center;
-    width: 80%; /* Allow flexibility */
-    max-width: 800px;
-    min-height: 300px; /* Prevent squeezing */
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border-radius: 10px;
-}
+            .lyrics-block {
+                position: relative; /* Ensures absolute elements stay inside */
+                padding-top: 40px; /* Adjust spacing to prevent overlap with buttons */
+            }
 
-
-/* Ensure lyrics text stays centered */
-pre {
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
-    white-space: pre-wrap; /* Wrap text properly */
-    word-wrap: break-word; /* Prevent overflow */
-}
-
-.lyrics-block {
-    position: relative; /* Ensures absolute elements stay inside */
-    padding-top: 40px; /* Adjust spacing to prevent overlap with buttons */
-}
-
-.controls {
-    position: absolute;
-    top: 10px; /* Push buttons upwards */
-    left: 0;
-    right: 0; /* Stretch across the lyrics block */
-    display: flex;
-    justify-content: space-between; /* Places 'Back' on left, 'Next' on right */
-    padding: 0 20px; /* Adds spacing */
-}
-.controls button {
-    padding: 8px 12px;
-    font-size: 16px;
-}
-
-
-
-    </style>
-</head>
-<body>
-
-    <div id="title-section" class="section">
-    <h1>Emmanuel A.G. Church Chakan Pune</h1>
-</div>
-    <div class="container">
-
-<div id="index-section" class="index-block">
-
-    
-    <h2>Song Index</h2>
-    <div id="indexContainer" class="index-container"></div>
-    <div id="indexPagination" class="pagination"></div>
-</div>
-<div id="lyrics-section" class="lyrics-block">
-
-    <h2>Song Lyrics</h2>
-    <div class="carousel-container">
-        <div id="songCarousel" class="carousel"></div>
-    </div>
-
-    <div class="controls">
-        <button onclick="prevSlide()">Back</button>
-        <button onclick="nextSlide()">Next</button>
-    </div>
-</div>
+            .controls {
+                position: absolute;
+                top: 10px; /* Push buttons upwards */
+                left: 0;
+                right: 0; /* Stretch across the lyrics block */
+                display: flex;
+                justify-content: space-between; /* Places 'Back' on left, 'Next' on right */
+                padding: 0 20px; /* Adds spacing */
+            }
+            .controls button {
+                padding: 8px 12px;
+                font-size: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="title-section" class="section">
+            <h1>Emmanuel A.G. Church Chakan Pune</h1>
         </div>
+        <div class="container">
+            <div id="index-section" class="index-block">
+                <h2>Song Index</h2>
+                <div id="indexContainer" class="index-container"></div>
+                <div id="indexPagination" class="pagination"></div>
+            </div>
+            <div id="lyrics-section" class="lyrics-block">
+                <h2>Song Lyrics</h2>
+                <div class="carousel-container">
+                    <div id="songCarousel" class="carousel"></div>
+                </div>
+                <div class="controls"><button onclick="prevSlide()">Back</button> <button onclick="nextSlide()">Next</button></div>
+            </div>
+        </div>
+        <script>
+            let currentIndex = 0;
+            let songs = [];
+            let touchStartX = 0;
+            let touchEndX = 0;
 
+            // Fetch songs from JSON
+            fetch("https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/songs.json")
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.songs) {
+                        songs = data.songs;
+                        displayCarousel();
+                        displayIndex();
+                        currentIndex = 0; // Set default to first song
+                        updateSlide(); // Ensure highlighting works
+                    } else {
+                        console.error("Invalid JSON structure: Missing 'songs' key");
+                    }
+                })
+                .catch((error) => console.error("Error loading songs:", error));
 
-
-    <script>
-        let currentIndex = 0;
-        let songs = [];
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        // Fetch songs from JSON
-        fetch("https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/songs.json")
-    .then(response => response.json())
-    .then(data => {
-        if (data.songs) {
-            songs = data.songs;
-            displayCarousel();
-            displayIndex();
-            currentIndex = 0; // Set default to first song
-            updateSlide(); // Ensure highlighting works
-        } else {
-            console.error("Invalid JSON structure: Missing 'songs' key");
-        }
-    })
-    .catch(error => console.error("Error loading songs:", error));
-
-        // Display songs in carousel
-        function displayCarousel() {
-    const songCarousel = document.getElementById('songCarousel');
-    songCarousel.innerHTML = songs.map(song => `
+            // Display songs in carousel
+            function displayCarousel() {
+                const songCarousel = document.getElementById("songCarousel");
+                songCarousel.innerHTML = songs
+                    .map(
+                        (song) => `
         <div class="song">
             <h2>${song.id}. ${song.title}</h2> <!-- Uses ID from JSON -->
             <pre>${song.lyrics.join("\n")}</pre>
         </div>
-    `).join('');
-}
+    `
+                    )
+                    .join("");
+            }
 
-        // Navigate songs
-      function updateSlide() {
-    const carousel = document.querySelector('.carousel');
-    carousel.style.transition = "transform 0.4s ease-in-out";
-    carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
+            // Navigate songs
+            function updateSlide() {
+                const carousel = document.querySelector(".carousel");
+                carousel.style.transition = "transform 0.4s ease-in-out";
+                carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
 
-    document.querySelectorAll('.index-item a').forEach((link, i) => {
-        if (i === currentIndex) {
-            link.classList.add('active'); // Highlight the first song
-        } else {
-            link.classList.remove('active');
-        }
-    });
-}
+                document.querySelectorAll(".index-item a").forEach((link, i) => {
+                    if (i === currentIndex) {
+                        link.classList.add("active"); // Highlight the first song
+                    } else {
+                        link.classList.remove("active");
+                    }
+                });
+            }
 
+            // Enable swipe gestures for mobile
+            document.querySelector(".carousel-container").addEventListener("touchstart", (event) => {
+                touchStartX = event.touches[0].clientX;
+            });
 
+            document.querySelector(".carousel-container").addEventListener("touchend", (event) => {
+                if (!touchEndX) {
+                    // Prevent multiple event triggers
+                    touchEndX = event.changedTouches[0].clientX;
+                    handleSwipe();
+                    touchEndX = null; // Reset after handling
+                }
+            });
 
-       
+            function handleSwipe() {
+                const swipeThreshold = 50; // Minimum distance for swipe
+                const swipeDistance = touchEndX - touchStartX;
 
-        // Enable swipe gestures for mobile
-        document.querySelector('.carousel-container').addEventListener('touchstart', (event) => {
-    touchStartX = event.touches[0].clientX;
-});
+                if (Math.abs(swipeDistance) < swipeThreshold) return; // Ignore small swipes
 
-document.querySelector('.carousel-container').addEventListener('touchend', (event) => {
-    if (!touchEndX) { // Prevent multiple event triggers
-        touchEndX = event.changedTouches[0].clientX;
-        handleSwipe();
-        touchEndX = null; // Reset after handling
-    }
-});
+                // Prevent accidental double transition
+                let newIndex = currentIndex;
+                if (swipeDistance > 0 && currentIndex > 0) {
+                    newIndex = currentIndex - 1;
+                } else if (swipeDistance < 0 && currentIndex < songs.length - 1) {
+                    newIndex = currentIndex + 1;
+                }
 
+                // Ensure we update only if there's a valid change
+                if (newIndex !== currentIndex) {
+                    currentIndex = newIndex;
+                    updateSlide();
+                }
+            }
 
-       function handleSwipe() {
-    const swipeThreshold = 50; // Minimum distance for swipe
-    const swipeDistance = touchEndX - touchStartX;
+            function nextSlide() {
+                if (currentIndex < songs.length - 1) {
+                    currentIndex += 1; // Move only one step forward
+                    updateSlide();
+                }
+            }
 
-    if (Math.abs(swipeDistance) < swipeThreshold) return; // Ignore small swipes
+            function prevSlide() {
+                if (currentIndex > 0) {
+                    currentIndex -= 1; // Move only one step backward
+                    updateSlide();
+                }
+            }
 
-    // Prevent accidental double transition
-    let newIndex = currentIndex;
-    if (swipeDistance > 0 && currentIndex > 0) {
-        newIndex = currentIndex - 1;
-    } else if (swipeDistance < 0 && currentIndex < songs.length - 1) {
-        newIndex = currentIndex + 1;
-    }
+            // Function to Display Index
+            const INDEX_PAGE_SIZE = 20;
+            let currentIndexPage = 1;
 
-    // Ensure we update only if there's a valid change
-    if (newIndex !== currentIndex) {
-        currentIndex = newIndex;
-        updateSlide();
-    }
-}
+            function displayIndex(page = 1) {
+                currentIndexPage = page;
+                const indexContainer = document.getElementById("indexContainer");
+                indexContainer.innerHTML = "";
 
+                const startIndex = (page - 1) * INDEX_PAGE_SIZE;
+                const endIndex = Math.min(startIndex + INDEX_PAGE_SIZE, songs.length);
 
+                let indexHTML = "";
+                songs.slice(startIndex, endIndex).forEach((song, index) => {
+                    indexHTML += `<div class="index-item"><a href="javascript:scrollToStory(${startIndex + index + 1})">${startIndex + index + 1}. ${song.title}</a></div>`;
+                });
 
+                indexContainer.innerHTML = indexHTML;
 
-function nextSlide() {
-    if (currentIndex < songs.length - 1) {
-        currentIndex += 1; // Move only one step forward
-        updateSlide();
-    }
-}
+                updatePaginationControls();
+            }
 
-function prevSlide() {
-    if (currentIndex > 0) {
-        currentIndex -= 1; // Move only one step backward
-        updateSlide();
-    }
-}
+            function updatePaginationControls() {
+                const indexPagination = document.getElementById("indexPagination");
+                indexPagination.innerHTML = "";
 
+                const totalIndexPages = Math.ceil(songs.length / INDEX_PAGE_SIZE);
+                let paginationHTML = "";
 
+                // Back Button
+                if (currentIndexPage > 1) {
+                    paginationHTML += `<button onclick="displayIndex(currentIndexPage - 1)">Back</button>`;
+                }
 
-        // Function to Display Index
-        const INDEX_PAGE_SIZE = 20;
-let currentIndexPage = 1;
+                // Numbered Page Buttons (Show 1-5 or Adjust for Current Position)
+                const startPage = Math.max(1, currentIndexPage - 2);
+                const endPage = Math.min(totalIndexPages, startPage + 4);
 
-function displayIndex(page = 1) {
-    currentIndexPage = page;
-    const indexContainer = document.getElementById('indexContainer');
-    indexContainer.innerHTML = '';
+                for (let i = startPage; i <= endPage; i++) {
+                    paginationHTML += `<button onclick="displayIndex(${i})" ${i === currentIndexPage ? "disabled" : ""}>${i}</button>`;
+                }
 
-    const startIndex = (page - 1) * INDEX_PAGE_SIZE;
-    const endIndex = Math.min(startIndex + INDEX_PAGE_SIZE, songs.length);
+                // Next Button
+                if (currentIndexPage < totalIndexPages) {
+                    paginationHTML += `<button onclick="displayIndex(currentIndexPage + 1)">Next</button>`;
+                }
 
-    let indexHTML = '';
-    songs.slice(startIndex, endIndex).forEach((song, index) => {
-        indexHTML += `<div class="index-item"><a href="javascript:scrollToStory(${startIndex + index + 1})">${startIndex + index + 1}. ${song.title}</a></div>`;
-    });
-
-    indexContainer.innerHTML = indexHTML;
-
-    updatePaginationControls();
-}
-
-function updatePaginationControls() {
-    const indexPagination = document.getElementById('indexPagination');
-    indexPagination.innerHTML = '';
-
-    const totalIndexPages = Math.ceil(songs.length / INDEX_PAGE_SIZE);
-    let paginationHTML = '';
-
-    // Back Button
-    if (currentIndexPage > 1) {
-        paginationHTML += `<button onclick="displayIndex(currentIndexPage - 1)">Back</button>`;
-    }
-
-    // Numbered Page Buttons (Show 1-5 or Adjust for Current Position)
-    const startPage = Math.max(1, currentIndexPage - 2);
-    const endPage = Math.min(totalIndexPages, startPage + 4);
-
-    for (let i = startPage; i <= endPage; i++) {
-        paginationHTML += `<button onclick="displayIndex(${i})" ${i === currentIndexPage ? 'disabled' : ''}>${i}</button>`;
-    }
-
-    // Next Button
-    if (currentIndexPage < totalIndexPages) {
-        paginationHTML += `<button onclick="displayIndex(currentIndexPage + 1)">Next</button>`;
-    }
-
-    // "Go to Page" Dropdown
-    paginationHTML += `<select onchange="displayIndex(parseInt(this.value))">
-        ${Array.from({ length: totalIndexPages }, (_, i) => `<option value="${i + 1}" ${i + 1 === currentIndexPage ? 'selected' : ''}>${i + 1}</option>`).join('')}
+                // "Go to Page" Dropdown
+                paginationHTML += `<select onchange="displayIndex(parseInt(this.value))">
+        ${Array.from({ length: totalIndexPages }, (_, i) => `<option value="${i + 1}" ${i + 1 === currentIndexPage ? "selected" : ""}>${i + 1}</option>`).join("")}
     </select>`;
 
-    indexPagination.innerHTML = paginationHTML;
-}
+                indexPagination.innerHTML = paginationHTML;
+            }
 
+            // Scroll to selected song
+            function scrollToStory(index) {
+                currentIndex = songs.findIndex((song) => song.id === index);
 
-        // Scroll to selected song
-function scrollToStory(index) {
-    currentIndex = songs.findIndex(song => song.id === index);
+                // Reset swipe tracking variables to avoid double movement
+                touchStartX = 0;
+                touchEndX = 0;
 
-    // Reset swipe tracking variables to avoid double movement
-    touchStartX = 0;
-    touchEndX = 0;
-
-    displayCarousel(); // Ensure lyrics update
-    updateSlide(); // Sync navigation correctly
-}
-
-    </script>
-
-</body>
+                displayCarousel(); // Ensure lyrics update
+                updateSlide(); // Sync navigation correctly
+            }
+        </script>
+    </body>
 </html>
