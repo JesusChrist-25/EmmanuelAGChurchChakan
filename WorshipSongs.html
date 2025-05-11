@@ -219,8 +219,11 @@ pre {
 
         // Navigate songs
         function updateSlide() {
-            document.querySelector('.carousel').style.transform = `translateX(-${currentIndex * 100}vw)`;
-        }
+    const carousel = document.querySelector('.carousel');
+    carousel.style.transition = "transform 0.5s ease-in-out"; // Smooth transition
+    carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
+}
+
         
 
         // Enable swipe gestures for mobile
@@ -235,12 +238,16 @@ pre {
 
         function handleSwipe() {
     const swipeThreshold = 50; // Minimum swipe distance to trigger change
+
     if (touchEndX - touchStartX > swipeThreshold && currentIndex > 0) {
-        prevSlide(); // Move to previous song
+        currentIndex--; // Move ONE song back
     } else if (touchStartX - touchEndX > swipeThreshold && currentIndex < songs.length - 1) {
-        nextSlide(); // Move to next song
+        currentIndex++; // Move ONE song forward
     }
+
+    updateSlide(); // Apply changes to carousel position
 }
+
 function nextSlide() {
     if (currentIndex < songs.length - 1) {
         currentIndex += 1; // Move forward one step
