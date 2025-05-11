@@ -13,17 +13,12 @@
         h1 {
             text-align: center;
         }
-        .index-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            max-width: 100%;
-            margin: auto;
-        }
-        .index-item {
-            flex: 0 0 45%;
-            margin-bottom: 8px;
-            text-align: left;
+
+        /* Fix index visibility */
+        #indexContainer {
+            min-height: 200px; /* Ensures visibility */
+            border: 1px solid #ccc; /* Helps debug layout */
+            padding: 10px;
         }
 
         /* Carousel styling */
@@ -37,7 +32,7 @@
             transition: transform 0.5s ease-in-out;
         }
         .song {
-            min-width: 100vw;
+            min-width: 100vw; /* Full screen per song */
             padding: 20px;
             box-sizing: border-box;
             text-align: center;
@@ -76,6 +71,8 @@
     <script>
         let currentIndex = 0;
         let songs = [];
+        let touchStartX = 0;
+        let touchEndX = 0;
 
         // Fetch songs from JSON
         fetch("https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/songs.json")
@@ -84,6 +81,7 @@
                 if (data.songs) {
                     songs = data.songs;
                     displayCarousel();
+                    displayIndex(); // Ensure index loads
                 } else {
                     console.error("Invalid JSON structure: Missing 'songs' key");
                 }
@@ -115,6 +113,45 @@
             if (currentIndex > 0) {
                 currentIndex--;
                 updateSlide();
+            }
+        }
+
+        // Enable swipe gestures for mobile
+        document.querySelector('.carousel-container').addEventListener('touchstart', (event) => {
+            touchStartX = event.touches[0].clientX;
+        });
+
+        document.querySelector('.carousel-container').addEventListener('touchend', (event) => {
+            touchEndX = event.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50; // Minimum swipe distance to trigger change
+            if (touchEndX - touchStartX > swipeThreshold) {
+                prevSlide(); // Swipe right
+            } else if (touchStartX - touchEndX > swipeThreshold) {
+                nextSlide(); // Swipe left
+            }
+        }
+
+        // Function to Display Index
+        function displayIndex() {
+            const indexContainer = document.getElementById('indexContainer');
+            indexContainer.innerHTML = songs.map((song, index) => `
+                <div class="index-item">
+                    <a href="javascript:scrollToStory(${index + 1})">${index + 1}. ${song.title}</a>
+                </div>
+            `).join('');
+        }
+
+        // Scroll to selected song
+        function scrollToStory(index) {
+            const storyElement = document.querySelectorAll('.song')[index - 1];
+            if (storyElement) {
+                storyElement.scrollIntoView({ behavior: "smooth" });
+            } else {
+                console.error(`Story #${index} not found.`);
             }
         }
     </script>
