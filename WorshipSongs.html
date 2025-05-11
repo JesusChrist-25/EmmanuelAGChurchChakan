@@ -170,18 +170,7 @@
                 font-size: 16px;
             }
 
-.nav-btn {
-    margin: 5px;
-    padding: 5px 5px; /* Reduces button size */
-    font-size: 16px; /* Sets text size */
-    
-    color: #333; /* Adjusts text color */
-    cursor: pointer;
-}
 
-.nav-btn:hover {
-    color: #007bff; /* Changes color on hover */
-}
         </style>
     </head>
     <body>
@@ -199,7 +188,7 @@
                 <div class="carousel-container">
                     <div id="songCarousel" class="carousel"></div>
                 </div>
-                <div class="controls"><button class="nav-btn" onclick="prevSlide()">&lt;</button> <button class="nav-btn" onclick="nextSlide()">&gt;</button></div>
+                <div class="controls"><button onclick="prevSlide()">&lt;</button> <button onclick="nextSlide()">&gt;</button></div>
             </div>
         </div>
         <script>
