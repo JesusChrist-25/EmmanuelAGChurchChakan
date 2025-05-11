@@ -108,6 +108,29 @@
     color: #222; /* Adjust text color */
 }
 
+        .container {
+    display: flex;
+    gap: 20px; /* Space between blocks */
+    justify-content: center; /* Center align content */
+    align-items: flex-start; /* Align sections at the top */
+}
+
+.index-block {
+    width: 30%;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.lyrics-block {
+    width: 65%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    color: white;
+    border-radius: 10px;
+}
+
+
     </style>
 </head>
 <body>
@@ -115,14 +138,16 @@
     <div id="title-section" class="section">
     <h1>Emmanuel A.G. Church Chakan Pune</h1>
 </div>
-<div id="index-section" class="section">
+    <div class="container">
+
+<div id="index-section" class="index-block">
 
     
     <h2>Song Index</h2>
     <div id="indexContainer" class="index-container"></div>
     <div id="indexPagination" class="pagination"></div>
 </div>
-<div id="lyrics-section" class="section">
+<div id="lyrics-section" class="lyrics-block">
 
     <h2>Song Lyrics</h2>
     <div class="carousel-container">
@@ -134,6 +159,8 @@
         <button onclick="nextSlide()">Next</button>
     </div>
 </div>
+        </div>
+
 
     <script src="songs.js"></script> <!-- Your existing script -->
     <script>
