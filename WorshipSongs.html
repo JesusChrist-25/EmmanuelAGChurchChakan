@@ -157,18 +157,23 @@
             }
 
             .controls {
-                position: absolute;
-                top: 10px; /* Push buttons upwards */
-                left: 0;
-                right: 0; /* Stretch across the lyrics block */
-                display: flex;
-                justify-content: space-between; /* Places 'Back' on left, 'Next' on right */
-                padding: 0 20px; /* Adds spacing */
-            }
-            .controls button {
-                padding: 8px 12px;
-                font-size: 16px;
-            }
+    text-align: center;
+    margin-top: 10px;
+}
+
+.nav-btn {
+    margin: 5px;
+    padding: 5px 10px; /* Reduces button size */
+    font-size: 16px; /* Sets text size */
+    background: none; /* Removes background */
+    border: none; /* Removes border */
+    color: #333; /* Adjusts text color */
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    color: #007bff; /* Changes color on hover */
+}
         </style>
     </head>
     <body>
@@ -186,7 +191,7 @@
                 <div class="carousel-container">
                     <div id="songCarousel" class="carousel"></div>
                 </div>
-                <div class="controls"><button onclick="prevSlide()">Back</button> <button onclick="nextSlide()">Next</button></div>
+                <div class="controls"><button class="nav-btn" onclick="prevSlide()">&lt;</button> <button class="nav-btn" onclick="nextSlide()">&gt;</button></div>
             </div>
         </div>
         <script>
