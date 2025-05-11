@@ -221,18 +221,7 @@ pre {
         function updateSlide() {
             document.querySelector('.carousel').style.transform = `translateX(-${currentIndex * 100}vw)`;
         }
-        function nextSlide() {
-            if (currentIndex < songs.length - 1) {
-                currentIndex++;
-                updateSlide();
-            }
-        }
-        function prevSlide() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateSlide();
-            }
-        }
+        
 
         // Enable swipe gestures for mobile
         document.querySelector('.carousel-container').addEventListener('touchstart', (event) => {
@@ -327,25 +316,11 @@ function updatePaginationControls() {
 
         // Scroll to selected song
 function scrollToStory(index) {
-    currentIndex = songs.findIndex(song => song.id === index); // Set correct index
+    currentIndex = songs.findIndex(song => song.id === index);
 
-    const songContainer = document.getElementById('songCarousel');
-    const selectedSong = songs[currentIndex];
-
-    if (selectedSong) {
-        songContainer.innerHTML = `
-            <div class="song">
-                <h2>${selectedSong.id}. ${selectedSong.title}</h2>
-                <pre>${selectedSong.lyrics.join("\n")}</pre>
-            </div>
-        `;
-
-        updateSlide(); // Ensure the swipe system knows the latest song
-    } else {
-        console.error(`Song #${index} not found.`);
-    }
+    displayCarousel(); // Ensure correct lyrics are displayed
+    updateSlide(); // Sync with swipe behavior
 }
-
 function updateSlide() {
     const carousel = document.querySelector('.carousel');
     carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
