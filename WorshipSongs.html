@@ -310,12 +310,13 @@ function updatePaginationControls() {
 
 
         // Scroll to selected song
-       function scrollToStory(index) {
-    const songContainer = document.getElementById('songCarousel'); // Select lyrics container
+      function scrollToStory(index) {
+    const songContainer = document.getElementById('songCarousel');
 
-    // Find the selected song from JSON
-    const selectedSong = songs.find(song => song.id === index);
+    // Update currentIndex to sync with swipe navigation
+    currentIndex = songs.findIndex(song => song.id === index);
 
+    const selectedSong = songs[currentIndex];
     if (selectedSong) {
         songContainer.innerHTML = `
             <div class="song">
@@ -327,6 +328,10 @@ function updatePaginationControls() {
         console.error(`Song #${index} not found.`);
     }
 }
+function updateSlide() {
+    document.querySelector('.carousel').style.transform = `translateX(-${currentIndex * 100}vw)`;
+}
+
 
     </script>
 
