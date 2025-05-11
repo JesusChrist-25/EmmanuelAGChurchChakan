@@ -218,35 +218,47 @@ pre {
 }
 
         // Navigate songs
-        function updateSlide() {
+       function updateSlide() {
     const carousel = document.querySelector('.carousel');
-    carousel.style.transition = "transform 0.4s ease-in-out"; // Smooth transition
+    carousel.style.transition = "transform 0.4s ease-in-out";
     carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
 }
+
        
 
         // Enable swipe gestures for mobile
         document.querySelector('.carousel-container').addEventListener('touchstart', (event) => {
-            touchStartX = event.touches[0].clientX;
-        });
+    touchStartX = event.touches[0].clientX;
+});
 
-        document.querySelector('.carousel-container').addEventListener('touchend', (event) => {
-            touchEndX = event.changedTouches[0].clientX;
-            handleSwipe();
-        });
+document.querySelector('.carousel-container').addEventListener('touchend', (event) => {
+    if (!touchEndX) { // Prevent multiple event triggers
+        touchEndX = event.changedTouches[0].clientX;
+        handleSwipe();
+        touchEndX = null; // Reset after handling
+    }
+});
+
 
         function handleSwipe() {
-    const swipeThreshold = 50; // Minimum swipe distance to trigger change
+    const swipeThreshold = 50; // Minimum distance for valid swipe
     const swipeDistance = touchEndX - touchStartX;
+
+    console.log(`Swipe distance: ${swipeDistance}`); // Debugging line
+    console.log(`Current index before swipe: ${currentIndex}`);
 
     if (Math.abs(swipeDistance) < swipeThreshold) return; // Ignore small movements
 
     if (swipeDistance > 0 && currentIndex > 0) {
-        prevSlide(); // Swipe right (Previous song)
+        currentIndex--;
     } else if (swipeDistance < 0 && currentIndex < songs.length - 1) {
-        nextSlide(); // Swipe left (Next song)
+        currentIndex++;
     }
+
+    console.log(`Updated index after swipe: ${currentIndex}`); // Debugging line
+    updateSlide();
 }
+
 
 
 function nextSlide() {
