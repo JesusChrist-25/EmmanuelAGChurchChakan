@@ -108,26 +108,27 @@
     color: #222; /* Adjust text color */
 }
 
-        .container {
+ .container {
     display: flex;
-    gap: 20px; /* Space between blocks */
-    justify-content: center; /* Center align content */
-    align-items: flex-start; /* Align sections at the top */
+    flex-direction: column; /* Stack blocks vertically */
+    align-items: center;
+    gap: 20px; /* Space between sections */
+}
+
+.index-block, .lyrics-block {
+    width: 80%; /* Adjust width for balance */
+    max-width: 800px;
+    padding: 15px;
+    border-radius: 10px;
 }
 
 .index-block {
-    width: 30%;
     background: rgba(255, 255, 255, 0.8);
-    padding: 15px;
-    border-radius: 10px;
 }
 
 .lyrics-block {
-    width: 65%;
     background: rgba(0, 0, 0, 0.5);
-    padding: 15px;
     color: white;
-    border-radius: 10px;
 }
 
 
