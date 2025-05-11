@@ -218,14 +218,24 @@ function updatePaginationControls() {
 
 
         // Scroll to selected song
-        function scrollToStory(index) {
-            const storyElement = document.querySelectorAll('.song')[index - 1];
-            if (storyElement) {
-                storyElement.scrollIntoView({ behavior: "smooth" });
-            } else {
-                console.error(`Story #${index} not found.`);
-            }
-        }
+       function scrollToStory(index) {
+    const songContainer = document.getElementById('songCarousel'); // Select lyrics container
+
+    // Find the selected song from JSON
+    const selectedSong = songs.find(song => song.id === index);
+
+    if (selectedSong) {
+        songContainer.innerHTML = `
+            <div class="song">
+                <h2>${selectedSong.id}. ${selectedSong.title}</h2>
+                <pre>${selectedSong.lyrics.join("\n")}</pre>
+            </div>
+        `;
+    } else {
+        console.error(`Song #${index} not found.`);
+    }
+}
+
     </script>
 
 </body>
