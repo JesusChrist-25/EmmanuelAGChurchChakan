@@ -128,23 +128,29 @@
 
 .lyrics-block {
     display: flex;
-    justify-content: center; /* Centers content inside the block */
+    flex-direction: column; /* Stack title & lyrics vertically */
+    justify-content: center; /* Center content */
     align-items: center;
-    text-align: center; /* Ensures text inside is centered */
-    width: 80%; /* Adjust width */
+    text-align: center;
+    width: 80%; /* Allow flexibility */
     max-width: 800px;
+    min-height: 300px; /* Prevent squeezing */
     padding: 15px;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     border-radius: 10px;
 }
 
+
 /* Ensure lyrics text stays centered */
 pre {
-    text-align: center; 
-    width: 100%; /* Prevents shifting to the right */
-    margin: 0 auto; /* Centers content */
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    white-space: pre-wrap; /* Wrap text properly */
+    word-wrap: break-word; /* Prevent overflow */
 }
+
 
 
 
