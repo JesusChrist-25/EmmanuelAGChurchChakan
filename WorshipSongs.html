@@ -49,7 +49,7 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Shadow effect */
             border-radius: 10px; /* Optional rounded corners */
         }
-             h2 {
+             .lyricsTitle {
             background-color: #3498db; /* Solid background color */
             color: white; /* Text color */
             padding: 20px; /* Space around text */
@@ -235,7 +235,7 @@
                     .map(
                         (song) => `
         <div class="song">
-            <h2>${song.id}. ${song.title}</h2> <!-- Uses ID from JSON -->
+            <h2 class="lyricsTitle">${song.id}. ${song.title}</h2> <!-- Uses ID from JSON -->
             <pre>${song.lyrics.join("\n")}</pre>
         </div>
     `
