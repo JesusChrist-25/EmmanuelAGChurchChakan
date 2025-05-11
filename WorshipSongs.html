@@ -245,13 +245,29 @@ pre {
         });
 
         function handleSwipe() {
-            const swipeThreshold = 50; // Minimum swipe distance to trigger change
-            if (touchEndX - touchStartX > swipeThreshold) {
-                prevSlide(); // Swipe right
-            } else if (touchStartX - touchEndX > swipeThreshold) {
-                nextSlide(); // Swipe left
-            }
-        }
+    const swipeThreshold = 50; // Minimum swipe distance to trigger change
+    if (touchEndX - touchStartX > swipeThreshold && currentIndex > 0) {
+        prevSlide(); // Swipe right (Previous song)
+    } else if (touchStartX - touchEndX > swipeThreshold && currentIndex < songs.length - 1) {
+        nextSlide(); // Swipe left (Next song)
+    }
+}
+function nextSlide() {
+    if (currentIndex < songs.length - 1) {
+        currentIndex++; // Move one song forward
+        displayCarousel(); // Ensure content updates
+        updateSlide();
+    }
+}
+
+function prevSlide() {
+    if (currentIndex > 0) {
+        currentIndex--; // Move one song backward
+        displayCarousel();
+        updateSlide();
+    }
+}
+
 
         // Function to Display Index
         const INDEX_PAGE_SIZE = 20;
