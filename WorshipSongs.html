@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Song Collection</title>
+    <title>Emmanuel A.G. Church Chakan Pune</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,132 +14,107 @@
             text-align: center;
         }
         .index-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    max-width: 600px; /* Adjust width based on preference */
-    margin: auto;
-}
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 100%;
+            margin: auto;
+        }
+        .index-item {
+            flex: 0 0 45%;
+            margin-bottom: 8px;
+            text-align: left;
+        }
 
-.index-item {
-    flex: 0 0 45%; /* Each column takes about half the width */
-    margin-bottom: 8px;
-    text-align: left;
-}
+        /* Carousel styling */
+        .carousel-container {
+            overflow: hidden;
+            width: 100vw;
+            position: relative;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .song {
+            min-width: 100vw;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
 
-        .pagination {
+        /* Navigation Buttons */
+        .controls {
             text-align: center;
             margin-top: 10px;
         }
-        .pagination button {
+        .controls button {
             margin: 5px;
-            padding: 5px 10px;
-        }
-        .song {
-            margin: 20px;
-            text-align: left;
-        }
-        .song-title {
-            font-weight: bold;
-        }
-        pre {
-            white-space: pre-wrap;
-            font-family: 'Courier New', monospace;
-            background: #f4f4f4;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 10px 15px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Song Collection</h1>
+    <h1>Emmanuel A.G. Church Chakan Pune</h1>
     
     <h2>Song Index</h2>
     <div id="indexContainer" class="index-container"></div>
     <div id="indexPagination" class="pagination"></div>
 
     <h2>Song Lyrics</h2>
-    <div id="songContainer"></div>
+    <div class="carousel-container">
+        <div id="songCarousel" class="carousel"></div>
+    </div>
 
+    <div class="controls">
+        <button onclick="prevSlide()">Back</button>
+        <button onclick="nextSlide()">Next</button>
+    </div>
+
+    <script src="songs.js"></script> <!-- Your existing script -->
     <script>
-        const INDEX_PAGE_SIZE = 5;  // Show 5 songs per index page
-        let currentIndexPage = 1;
+        let currentIndex = 0;
         let songs = [];
 
-        // Load songs from JSON file
+        // Fetch songs from JSON
         fetch("https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/songs.json")
             .then(response => response.json())
             .then(data => {
-                if (data.songs) {  // Ensure "songs" key exists
+                if (data.songs) {
                     songs = data.songs;
-                    displayIndex();
-                    displayAllStories(); // Load all lyrics
+                    displayCarousel();
                 } else {
                     console.error("Invalid JSON structure: Missing 'songs' key");
                 }
             })
             .catch(error => console.error("Error loading songs:", error));
 
-        // Function to Display Paginated Index
-        function displayIndex(page = 1) {
-            currentIndexPage = page;
-            const indexContainer = document.getElementById('indexContainer');
-            indexContainer.innerHTML = '';
-
-            const startIndex = (page - 1) * INDEX_PAGE_SIZE;
-            const endIndex = Math.min(startIndex + INDEX_PAGE_SIZE, songs.length);
-
-            songs.slice(startIndex, endIndex).forEach((song, index) => {
-                const indexItem = document.createElement('div');
-                indexItem.className = 'index-item';
-                indexItem.innerHTML = `<a href="javascript:scrollToStory(${startIndex + index + 1})">${startIndex + index + 1}. ${song.title}</a>`;
-                indexContainer.appendChild(indexItem);
-            });
-
-            updatePaginationControls();
+        // Display songs in carousel
+        function displayCarousel() {
+            const songCarousel = document.getElementById('songCarousel');
+            songCarousel.innerHTML = songs.map((song, index) => `
+                <div class="song">
+                    <h2>${song.title}</h2>
+                    <pre>${song.lyrics.join("\n")}</pre>
+                </div>
+            `).join('');
         }
 
-        // Function to Update Index Pagination Controls
-        function updatePaginationControls() {
-            const indexPagination = document.getElementById('indexPagination');
-            indexPagination.innerHTML = '';
-
-            const totalIndexPages = Math.ceil(songs.length / INDEX_PAGE_SIZE);
-
-            if (currentIndexPage > 1) {
-                indexPagination.innerHTML += `<button onclick="displayIndex(currentIndexPage - 1)">Back</button>`;
-            }
-
-            indexPagination.innerHTML += `<button disabled>${currentIndexPage}</button>`;
-
-            if (currentIndexPage < totalIndexPages) {
-                indexPagination.innerHTML += `<button onclick="displayIndex(currentIndexPage + 1)">Next</button>`;
+        // Navigate songs
+        function updateSlide() {
+            document.querySelector('.carousel').style.transform = `translateX(-${currentIndex * 100}vw)`;
+        }
+        function nextSlide() {
+            if (currentIndex < songs.length - 1) {
+                currentIndex++;
+                updateSlide();
             }
         }
-
-        // Function to Load Full List of Songs (Scrollable)
-        function displayAllStories() {
-            const songContainer = document.getElementById('songContainer');
-            songContainer.innerHTML = '';
-
-            songs.forEach((song, index) => {
-                const songElement = document.createElement('div');
-                songElement.className = 'song';
-                songElement.id = `story-${index + 1}`;
-                songElement.innerHTML = `<span class="song-title">${index + 1}. ${song.title}</span>
-                                         <pre>${song.lyrics.join("\n")}</pre>`;
-                songContainer.appendChild(songElement);
-            });
-        }
-
-        // Function to Scroll to Selected Song
-        function scrollToStory(index) {
-            const storyElement = document.getElementById(`story-${index}`);
-            if (storyElement) {
-                storyElement.scrollIntoView({ behavior: "smooth" });
-            } else {
-                console.error(`Story #${index} not found.`);
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlide();
             }
         }
     </script>
