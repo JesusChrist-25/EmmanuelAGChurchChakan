@@ -160,18 +160,25 @@ pre {
     word-wrap: break-word; /* Prevent overflow */
 }
 
+.lyrics-block {
+    position: relative; /* Ensures absolute elements stay inside */
+    padding-top: 40px; /* Adjust spacing to prevent overlap with buttons */
+}
+
 .controls {
     position: absolute;
-    top: 10px; /* Move buttons upwards */
-    width: 100%;
+    top: 10px; /* Push buttons upwards */
+    left: 0;
+    right: 0; /* Stretch across the lyrics block */
     display: flex;
-    justify-content: space-between; /* Aligns buttons to opposite corners */
-    padding: 0 10px; /* Adds slight spacing */
+    justify-content: space-between; /* Places 'Back' on left, 'Next' on right */
+    padding: 0 20px; /* Adds spacing */
 }
 .controls button {
     padding: 8px 12px;
     font-size: 16px;
 }
+
 
 
     </style>
