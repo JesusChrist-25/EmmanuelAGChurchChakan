@@ -71,7 +71,11 @@
 .index-item a:focus {
     text-decoration: underline; /* Add underline only on hover or focus */
 }
-
+.index-item a.active {
+    text-decoration: underline;
+    font-weight: bold;
+    color: blue;
+}
 
 
         /* Carousel styling */
@@ -218,11 +222,21 @@ pre {
 }
 
         // Navigate songs
-       function updateSlide() {
+      function updateSlide() {
     const carousel = document.querySelector('.carousel');
     carousel.style.transition = "transform 0.4s ease-in-out";
     carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
+
+    // Update active index styling
+    document.querySelectorAll('.index-item a').forEach((link, i) => {
+        if (i === currentIndex) {
+            link.classList.add('active'); // Highlight the current song
+        } else {
+            link.classList.remove('active'); // Remove highlight from others
+        }
+    });
 }
+
 
        
 
