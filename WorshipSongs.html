@@ -252,18 +252,12 @@
 
             // Navigate songs
             function updateSlide() {
-                const carousel = document.querySelector(".carousel");
-                carousel.style.transition = "transform 0.4s ease-in-out";
-                carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
+    const carousel = document.querySelector(".carousel");
+    carousel.style.transition = "transform 0.4s ease-in-out";
+    carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
 
-                document.querySelectorAll(".index-item a").forEach((link, i) => {
-                    if (i === currentIndex) {
-                        link.classList.add("active"); // Highlight the first song
-                    } else {
-                        link.classList.remove("active");
-                    }
-                });
-            }
+    updateIndexHighlight(); // Ensure highlighting updates on song change
+}
 
             // Enable swipe gestures for mobile
             document.querySelector(".carousel-container").addEventListener("touchstart", (event) => {
@@ -318,23 +312,36 @@
             const INDEX_PAGE_SIZE = 10;
             let currentIndexPage = 1;
 
-            function displayIndex(page = 1) {
-                currentIndexPage = page;
-                const indexContainer = document.getElementById("indexContainer");
-                indexContainer.innerHTML = "";
+           function displayIndex(page = 1) {
+    currentIndexPage = page;
+    const indexContainer = document.getElementById("indexContainer");
+    indexContainer.innerHTML = "";
 
-                const startIndex = (page - 1) * INDEX_PAGE_SIZE;
-                const endIndex = Math.min(startIndex + INDEX_PAGE_SIZE, songs.length);
+    const startIndex = (page - 1) * INDEX_PAGE_SIZE;
+    const endIndex = Math.min(startIndex + INDEX_PAGE_SIZE, songs.length);
 
-                let indexHTML = "";
-                songs.slice(startIndex, endIndex).forEach((song, index) => {
-                    indexHTML += `<div class="index-item"><a href="javascript:scrollToStory(${startIndex + index + 1})">${startIndex + index + 1}. ${song.title}</a></div>`;
-                });
+    let indexHTML = "";
+    songs.slice(startIndex, endIndex).forEach((song, index) => {
+        indexHTML += `<div class="index-item"><a href="javascript:scrollToStory(${song.id})" data-song-id="${song.id}">${song.id}. ${song.title}</a></div>`;
+    });
 
-                indexContainer.innerHTML = indexHTML;
+    indexContainer.innerHTML = indexHTML;
 
-                updatePaginationControls();
-            }
+    updatePaginationControls();
+    updateIndexHighlight(); // Ensure highlighting updates when changing pages
+}
+function updateIndexHighlight() {
+    document.querySelectorAll(".index-item a").forEach((link) => {
+        const songID = parseInt(link.getAttribute("data-song-id"), 10);
+
+        if (songID === songs[currentIndex]?.id) {
+            link.classList.add("active"); // Add underline highlight
+        } else {
+            link.classList.remove("active");
+        }
+    });
+}
+
 
             function updatePaginationControls() {
                 const indexPagination = document.getElementById("indexPagination");
