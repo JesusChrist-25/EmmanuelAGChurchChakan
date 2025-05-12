@@ -251,13 +251,21 @@
             }
 
             // Navigate songs
-            function updateSlide() {
+   function updateSlide() {
     const carousel = document.querySelector(".carousel");
     carousel.style.transition = "transform 0.4s ease-in-out";
     carousel.style.transform = `translateX(-${currentIndex * 100}vw)`;
 
-    updateIndexHighlight(); // Ensure highlighting updates on song change
+    // Check which index page should be visible
+    const requiredIndexPage = Math.ceil((currentIndex + 1) / INDEX_PAGE_SIZE);
+    
+    if (requiredIndexPage !== currentIndexPage) {
+        displayIndex(requiredIndexPage); // Auto-switch index page
+    }
+
+    updateIndexHighlight(); // Ensure highlighting updates
 }
+
 
             // Enable swipe gestures for mobile
             document.querySelector(".carousel-container").addEventListener("touchstart", (event) => {
