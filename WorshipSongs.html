@@ -380,6 +380,35 @@
                 displayCarousel(); // Ensure lyrics update
                 updateSlide(); // Sync navigation correctly
             }
+            // Add touch tracking for index block scrolling
+let indexTouchStartX = 0;
+let indexTouchEndX = 0;
+
+// Enable swipe gestures for mobile index block
+document.querySelector("#indexContainer").addEventListener("touchstart", (event) => {
+    indexTouchStartX = event.touches[0].clientX;
+});
+
+document.querySelector("#indexContainer").addEventListener("touchend", (event) => {
+    indexTouchEndX = event.changedTouches[0].clientX;
+    handleIndexSwipe();
+});
+
+function handleIndexSwipe() {
+    const swipeThreshold = 50; // Minimum swipe distance
+    const swipeDistance = indexTouchEndX - indexTouchStartX;
+
+    if (Math.abs(swipeDistance) < swipeThreshold) return; // Ignore small swipes
+
+    if (swipeDistance < 0 && currentIndexPage < Math.ceil(songs.length / INDEX_PAGE_SIZE)) {
+        displayIndex(currentIndexPage + 1); // Swipe left → Next Page
+    } else if (swipeDistance > 0 && currentIndexPage > 1) {
+        displayIndex(currentIndexPage - 1); // Swipe right → Previous Page
+    }
+}
+
+// Add smooth scrolling effect for transitions
+document.querySelector("#indexContainer").style.transition = "transform 0.4s ease-in-out";
         </script>
     </body>
 </html>
