@@ -1,4 +1,4 @@
-document.addEventListener("contextmenu", function(event) {
+/* document.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
             document.addEventListener("keydown", function(event) {
@@ -6,7 +6,7 @@ document.addEventListener("contextmenu", function(event) {
         (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "J" || event.key === "C"))) {
         event.preventDefault();
     }
-});
+});  */
             let currentIndex = 0;
             let songs = [];
             let touchStartX = 0;
