@@ -14,10 +14,19 @@
                 background-size: cover;
                 color: Black; /* Adjust text for readability */
                 font-family: Arial, sans-serif;
-
+                
                 margin: 10px;
                 text-align: center;
             }
+
+            html, body {
+    overflow-x: hidden; /* Prevent scrolling to the right */
+    width: 100vw; /* Ensure content fits the screen */
+}
+            #title-section, #index-section, #lyrics-section {
+    max-width: 100%; /* Prevent content from expanding beyond screen */
+    overflow: hidden; /* Hide extra content if needed */
+}
 
             /* Title Section */
             #title-section {
@@ -130,6 +139,8 @@
                 overflow: hidden;
                 width: 100vw;
                 position: relative;
+                touch-action: pan-y; /* Prevent horizontal page movement */
+
             }
             .carousel {
                 display: flex;
