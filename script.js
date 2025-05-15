@@ -217,3 +217,18 @@ function handleIndexSwipe() {
 
 // Add smooth scrolling effect for transitions
 document.querySelector("#indexContainer").style.transition = "transform 0.4s ease-in-out";
+
+function searchSongs() {
+    let input = document.getElementById("searchBox").value.toLowerCase();
+    let songs = document.querySelectorAll(".index-item");
+
+    songs.forEach(song => {
+        let text = song.textContent.toLowerCase();
+        if (text.includes(input)) {
+            song.style.display = "block"; // Show matching items
+        } else {
+            song.style.display = "none"; // Hide non-matching items
+        }
+    });
+}
+
