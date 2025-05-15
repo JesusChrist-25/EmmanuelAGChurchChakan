@@ -218,6 +218,7 @@ function handleIndexSwipe() {
 // Add smooth scrolling effect for transitions
 document.querySelector("#indexContainer").style.transition = "transform 0.4s ease-in-out";
 
+/*
 function searchSongs() {
     let input = document.getElementById("searchBox").value.toLowerCase();
     let songs = document.querySelectorAll(".index-item");
@@ -230,4 +231,24 @@ function searchSongs() {
             song.style.display = "none"; // Hide non-matching items
         }
     });
+} */
+
+function searchSongs() {
+    let input = document.getElementById("searchBox").value.toLowerCase();
+    let indexContainer = document.getElementById("indexContainer");
+
+    indexContainer.innerHTML = ""; // Clear current view
+
+    let filteredSongs = songs.filter(song => song.title.toLowerCase().includes(input));
+
+    if (filteredSongs.length === 0) {
+        indexContainer.innerHTML = "<p>No matching songs found.</p>";
+    } else {
+        filteredSongs.forEach(song => {
+            let songElement = document.createElement("div");
+            songElement.classList.add("index-item");
+            songElement.innerHTML = `<a href="javascript:scrollToStory(${song.id})">${song.id}. ${song.title}</a>`;
+            indexContainer.appendChild(songElement);
+        });
+    }
 }
