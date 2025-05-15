@@ -24,6 +24,7 @@
                 background: rgb(31, 90, 135); /* Adds overlay to improve text visibility */
                 padding: 5px;
                 width: 100%;
+                position: relative;
             }
 
             /* Index Section */
@@ -95,7 +96,15 @@
                 font-weight: bold;
                 
             }
-
+            #searchBox {
+    position: absolute;
+    bottom: 10px; /* Align at the bottom */
+    right: 10px; /* Align to the right */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
             /* Carousel styling */
             .carousel-container {
                 overflow: hidden;
@@ -203,10 +212,10 @@
     <body>
         <div id="title-section" class="section">
             <h1>Emmanuel A.G. Church Chakan Pune</h1>
+            <input type="text" id="searchBox" placeholder="Search songs..." oninput="searchSongs()" />
         </div>
         <div class="container">
             <div id="index-section" class="index-block">
-                <input type="text" id="searchBox" placeholder="Search songs..." oninput="searchSongs()" />
                 <h2 class="heading">Song Index</h2>
                 <div id="indexContainer" class="index-container"></div>
                 <div id="indexPagination" class="pagination"></div>
