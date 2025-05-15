@@ -54,7 +54,7 @@
     margin-bottom: 0px;
 display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Keeps items from collapsing */
+    justify-content: space-between; 
     align-items: center;
     
 
@@ -269,9 +269,12 @@ display: flex;
     margin-top: 15px; /* Adds space above pagination */
     margin-bottom: 0px; /* Remove extra space below pagination */
     padding-bottom: 0px; /* Prevent extra padding */
-    left: 50%;
-    transform: translateX(-50%); /* Centers it */
-    position: relative;
+    
+   position: relative; /* Keeps it inside the section */
+    display: flex;
+    justify-content: center; /* Centers buttons horizontally */
+    width: 100%; /* Ensures it takes up full width */
+
     align-self: center;
     margin-top: auto; /* Pushes pagination to the bottom */
 
