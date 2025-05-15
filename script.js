@@ -237,11 +237,17 @@ function searchSongs() {
     let input = document.getElementById("searchBox").value.toLowerCase().trim();
     let indexContainer = document.getElementById("indexContainer");
 
+    // If search box is empty, restore pagination
+    if (input === "") {
+        displayIndex(currentIndexPage); // Restore original pagination
+        return;
+    }
+
     indexContainer.innerHTML = ""; // Clear current view
 
     let filteredSongs = songs.filter(song => {
-        let songText = `${song.id}. ${song.title}`.toLowerCase(); // Ensure search includes number + title
-        return songText.includes(input) || song.id.toString().includes(input); // Check both full text & number
+        let songText = `${song.id}. ${song.title}`.toLowerCase();
+        return songText.includes(input) || song.id.toString().includes(input);
     });
 
     if (filteredSongs.length === 0) {
