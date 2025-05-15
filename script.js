@@ -218,26 +218,22 @@ function handleIndexSwipe() {
 // Add smooth scrolling effect for transitions
 document.querySelector("#indexContainer").style.transition = "transform 0.4s ease-in-out";
 
-let allSongs = [];
+let allSongs = []; // Store all songs globally
 
 document.addEventListener("DOMContentLoaded", function () {
-    allSongs = Array.from(document.querySelectorAll(".index-item")); // Store all songs once
+    allSongs = Array.from(document.querySelectorAll(".index-item")); // Capture all songs initially
 });
 
 function searchSongs() {
     let input = document.getElementById("searchBox").value.toLowerCase();
     let indexContainer = document.getElementById("indexContainer");
 
-    // Clear the displayed items
-    indexContainer.innerHTML = "";
+    // Ensure the filtered results are visible even if pagination was hiding some
+    indexContainer.innerHTML = ""; // Clear current displayed items
 
-    allSongs.forEach(song => {
-        let text = song.textContent.toLowerCase();
+    let filteredSongs = allSongs.filter(song => song.textContent.toLowerCase().includes(input));
 
-        if (text.includes(input)) {
-            indexContainer.appendChild(song.cloneNode(true)); // Append matching results
-        }
-    });
+    // Paginate the filtered results if needed
+    filteredSongs.forEach(song => indexContainer.appendChild(song.cloneNode(true)));
 }
-
 
