@@ -234,12 +234,15 @@ function searchSongs() {
 } */
 
 function searchSongs() {
-    let input = document.getElementById("searchBox").value.toLowerCase();
+    let input = document.getElementById("searchBox").value.toLowerCase().trim();
     let indexContainer = document.getElementById("indexContainer");
 
     indexContainer.innerHTML = ""; // Clear current view
 
-    let filteredSongs = songs.filter(song => song.title.toLowerCase().includes(input));
+    let filteredSongs = songs.filter(song => {
+        let songText = `${song.id}. ${song.title}`.toLowerCase(); // Ensure search includes number + title
+        return songText.includes(input) || song.id.toString().includes(input); // Check both full text & number
+    });
 
     if (filteredSongs.length === 0) {
         indexContainer.innerHTML = "<p>No matching songs found.</p>";
