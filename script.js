@@ -75,7 +75,7 @@
             });
 
             function handleSwipe() {
-                const swipeThreshold = 50; // Minimum distance for swipe
+                const swipeThreshold = 60; // Minimum distance for swipe
                 const swipeDistance = touchEndX - touchStartX;
 
                 if (Math.abs(swipeDistance) < swipeThreshold) return; // Ignore small swipes
