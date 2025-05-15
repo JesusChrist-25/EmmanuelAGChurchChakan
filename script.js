@@ -171,7 +171,7 @@ function updateIndexHighlight() {
                 }
 
                 // "Go to Page" Dropdown
-                paginationHTML += `<select onchange="displayIndex(parseInt(this.value))">
+                paginationHTML += `<span>Go to Page:</span> <select onchange="displayIndex(parseInt(this.value))">
         ${Array.from({ length: totalIndexPages }, (_, i) => `<option value="${i + 1}" ${i + 1 === currentIndexPage ? "selected" : ""}>${i + 1}</option>`).join("")}
     </select>`;
 
