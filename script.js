@@ -220,15 +220,27 @@ document.querySelector("#indexContainer").style.transition = "transform 0.4s eas
 
 function searchSongs() {
     let input = document.getElementById("searchBox").value.toLowerCase();
-    let songs = document.querySelectorAll(".index-item");
+    
+    // Retrieve all song entries regardless of pagination
+    let allSongs = Array.from(document.querySelectorAll(".index-item"));
 
-    songs.forEach(song => {
+    allSongs.forEach(song => {
         let text = song.textContent.toLowerCase();
+        
         if (text.includes(input)) {
             song.style.display = "block"; // Show matching items
         } else {
             song.style.display = "none"; // Hide non-matching items
         }
     });
+
+    // Ensure the filtered results are visible even if pagination was hiding some
+    document.getElementById("indexContainer").innerHTML = ""; // Clear existing display
+    allSongs.forEach(song => {
+        if (song.style.display === "block") {
+            document.getElementById("indexContainer").appendChild(song);
+        }
+    });
 }
+
 
