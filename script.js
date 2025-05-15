@@ -7,6 +7,10 @@
         event.preventDefault();
     }
 });  */
+document.addEventListener("touchmove", function(event) {
+    if (event.touches.length > 1) return; // Ignore multi-touch gestures
+    event.preventDefault(); // Prevent scrolling that messes up layout
+}, { passive: false });
             let currentIndex = 0;
             let songs = [];
             let touchStartX = 0;
