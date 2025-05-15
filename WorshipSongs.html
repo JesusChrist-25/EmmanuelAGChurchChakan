@@ -1,78 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Emmanuel A.G. Church Chakan Pune</title>
-        <style>
-           
-            body {
-                margin: 0;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                background: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png") no-repeat center center fixed;
-                background-size: cover;
-                color: Black; /* Adjust text for readability */
-                font-family: Arial, sans-serif;
-                
-                margin: 10px;
-                text-align: center;
-            }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emmanuel A.G. Church Chakan Pune</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: url("https://www.transparenttextures.com/patterns/diamond-upholstery.png") no-repeat center center fixed;
+            background-size: cover;
+            color: Black; /* Adjust text for readability */
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            text-align: center;
+        }
+        
+        html,body {
+            overflow-x: hidden; /* Completely prevent horizontal scrolling */
+            width: 100vw; /* Ensure no extra width */
+            margin: 0; /* Remove extra margins */
+            padding: 0; /* Fix unwanted space */
+        }
 
-            html, body {
-    overflow-x: hidden; /* Completely prevent horizontal scrolling */
-    width: 100vw; /* Ensure no extra width */
-   margin: 0; /* Remove extra margins */
-    padding: 0; /* Fix unwanted space */
-
-}
-            #title-section, #index-section, #lyrics-section {
-    max-width: 100%; /* Prevent content from expanding beyond screen */
-    overflow: hidden; /* Hide extra content if needed */
-                
-
-}
-
-            /* Title Section */
-            #title-section {
-                background: rgb(31, 90, 135); /* Adds overlay to improve text visibility */
-                padding: 5px;
-                width: 100%;
-                position: relative;
-                padding-top: 2px;
-            }
-
-            /* Index Section */
-            #index-section {
-                background: rgba(255, 255, 255, 0.85); /* Slight transparency */
-                border-radius: 10px;
-                padding: 10px;
-                width: 100%;
-                color: black;
-                padding-bottom: 0px; /* Prevent extra spacing */
-    margin-bottom: 0px;
-display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Prevents excess spacing */
- 
-    align-items: center;
-    
-
-               
-            }
-
-            /* Lyrics Section */
-            #lyrics-section {
-                background: rgba(255, 255, 255, 0.85); /* Dark overlay */
-                border-radius: 10px;
-                padding: 10px;
-                width: 100%;
-               
-            }
-
-            h1 {
-            background-color: linear-gradient(to right, #3498db;, #2472A3);/* Solid background color */
+        #title-section,#index-section,#lyrics-section {
+            max-width: 100%; /* Prevent content from expanding beyond screen */
+            overflow: hidden; /* Hide extra content if needed */
+        }
+        
+        /* Title Section */
+        #title-section {
+            background: rgb(31, 90, 135); /* Adds overlay to improve text visibility */
+            padding: 5px;
+            width: 100%;
+            position: relative;
+            padding-top: 2px;
+        }
+        
+        /* Index Section */
+        #index-section {
+            background: rgba(255, 255, 255, 0.85); /* Slight transparency */
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+            color: black;
+            padding-bottom: 0px; /* Prevent extra spacing */
+            margin-bottom: 0px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Prevents excess spacing */
+            align-items: center;
+        }
+        
+        /* Lyrics Section */
+        #lyrics-section {
+            background: rgba(255, 255, 255, 0.85); /* Dark overlay */
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+        }
+        
+        h1 {
+            background-color: linear-gradient(to right, #3498db;, #2472a3); /* Solid background color */
             color: white; /* Text color */
             padding: 10px; /* Space around text */
             text-align: center; /* Center text */
@@ -80,22 +71,23 @@ display: flex;
             border-radius: 10px; /* Optional rounded corners */
             margin-top: 5px; /* Reduce top space */
             padding-top: 5px; /* Adjust inner spacing */
-            
         }
-            h2 {
-    margin-top: 5px; /* Reduce top margin */
-    margin-bottom: 5px; /* Reduce bottom spacing */
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-            .heading {
+        
+        h2 {
+            margin-top: 5px; /* Reduce top margin */
+            margin-bottom: 5px; /* Reduce bottom spacing */
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+        
+        .heading {
             /*background-color: #808080;*/
             color: black; /* Text color */
             padding: 10px; /* Space around text */
             text-align: center; /* Center text */
-          
         }
-             .lyricsTitle {
+        
+        .lyricsTitle {
             background-color: #3498db; /* Solid background color */
             color: white; /* Text color */
             font-size: 22px;
@@ -104,245 +96,224 @@ display: flex;
             text-align: center; /* Center text */
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Shadow effect */
             border-radius: 10px; /* Optional rounded corners */
-                 margin-bottom: 15px;
+            margin-bottom: 15px;
         }
-
-
-
-            /* Fix index visibility */
-            #indexContainer {
-                display: grid;
-                grid-template-columns: 1fr 1fr; /* Remove the comma */
-                /*grid-auto-flow: column; /* Ensures vertical numbering */
-                column-gap: 10px; /* Space between columns */
-                gap: 2px;
-                max-width: 600px;
-                width: 100%;
-                margin: auto;
-                padding-left: 20px;
-                flex-grow: unset;
-            }
-            .index-item {
-                text-align: left;
-                margin: 0; /* Very tight spacing */
-                padding: 2px 0;
-
-            }
-            .index-item a {
-                text-decoration: none; /* Removes underline by default */
-                color: black; /* Keep visible */
-            }
-
-            .index-item a:hover,
-            .index-item a:focus {
-                text-decoration: underline; /* Add underline only on hover or focus */
-            }
-            .index-item a.active {
-                text-decoration: underline;
-                font-weight: bold;
-                
-            }
-            #searchBox {
-    position: absolute;
-    bottom: 10px; /* Align at the bottom */
-    right: 10px; /* Align to the right */
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 200px;
-                margin-top: 50px; /* Adds spacing above search box */
-
-}
-            /* Carousel styling */
-            .carousel-container {
-                overflow: hidden;
-                max-width: 100vw;
-                position: relative;
-                touch-action: pan-y; /* Prevent horizontal page movement */
-
-            }
-            .carousel {
-                display: flex;
-                transition: transform 0.6s ease-in-out;
-            }
-            .song {
-                min-width: 100vw; /* Full screen per song */
-                padding: 10px;
-                box-sizing: border-box;
-                text-align: center;
-            }
-
-            
-            pre {
-                font-family: "Georgia", serif; /* Choose a readable font */
-                font-size: 17px; /* Adjust size for clarity */
-                font-weight: normal; /* Customize thickness */
-                line-height: 1.5; /* Improve spacing */
-                color: #222; /* Adjust text color */
-            }
-
-            .container {
-                display: flex;
-                flex-direction: column; /* Stack blocks vertically */
-                align-items: center;
-                gap: 10px; /* Space between sections */
-                justify-content: center;
-    width: 100vw; /* Prevent overflow */
-
-            }
-
-            .index-block,
-            .lyrics-block {
-                width: 80%; /* Adjust width for balance */
-                max-width: 800px;
-                padding: 8px;
-                border-radius: 10px;
-                min-height: 250px; /* Lower height */
-
-            }
-
-            .index-block {
-                background: rgba(255, 255, 255, 0.8);
-            }
-
-            .lyrics-block {
-                display: flex;
-                flex-direction: column; /* Stack title & lyrics vertically */
-                justify-content: center; /* Center content */
-                align-items: center;
-                text-align: center;
-                width: 80%; /* Allow flexibility */
-                max-width: 800px;
-                min-height: 300px; /* Prevent squeezing */
-                padding: 15px;
-                background: rgba(255, 255, 255, 0.8);
-                color: black;
-                border-radius: 10px;
-                padding-top: 10px;
-            }
-
-            /* Ensure lyrics text stays centered */
-            pre {
-                text-align: center;
-                width: 100%;
-                margin: 0 auto;
-                white-space: pre-wrap; /* Wrap text properly */
-                word-wrap: break-word; /* Prevent overflow */
-            }
-
-            .lyrics-block {
-                position: relative; /* Ensures absolute elements stay inside */
-                padding-top: 15px; /* Adjust spacing to prevent overlap with buttons */
-            }
-
-           .controls {
-                position: absolute;
-                top: 10px; /* Push buttons upwards */
-                left: 0;
-                right: 0; /* Stretch across the lyrics block */
-                display: flex;
-                justify-content: space-between; /* Places 'Back' on left, 'Next' on right */
-                padding: 0 10px; /* Adds spacing */
-            }
-            .controls button {
-    background: linear-gradient(to right, #3498db, #2472A3);
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-.controls button:hover {
-    background: linear-gradient(to right, #2472A3, #3498db);
-    transform: scale(1.05);
-}
-
-            .controls button:first-child {
-    margin-left: 15px; /* Adjust this value as needed */
-}
-
-.controls button:last-child {
-    margin-right: 15px; /* Adjust this value as needed */
-}
-
-#indexPagination {
-    margin-top: 15px; /* Adds space above pagination */
-    margin-bottom: 10px; /* Remove extra space below pagination */
-    padding-bottom: 0px; /* Prevent extra padding */
-    
-   position: relative; /* Keeps it inside the section */
-    display: flex;
-    justify-content: center; /* Centers buttons horizontally */
-    width: 100%; /* Ensures it takes up full width */
-
-    align-self: center;
-    margin-top: auto; /* Pushes pagination to the bottom */
-position: relative;
-    margin-top: auto;
-    padding-bottom: 5px; 
-text-align: center; /* Ensures button alignment */
-
-
-
-}
-            #indexPagination button {
-    margin: 0 2px; /* Adds horizontal space between buttons */
-    padding: 4px 8px; /* Keeps button size balanced */
-}
-            #indexPagination select {
-    
-    border: none; /* Remove default borders */
-    padding: 4px 10px; /* Same padding as buttons */
-    font-size: 14px; /* Match button text size */
-    border-radius: 5px; /* Rounded corners */
-    transition: 0.3s; /* Smooth hover effect */
-    cursor: pointer; /* Indicate interactivity */
-               max-height: 150px; /* Limits how much space it takes when opened */
-    overflow-y: auto; /* Allows scrolling if there are many options */
-
-
-
-}
-            #indexPagination select option {
-    font-size: 13px; /* Adjust the size of options */
-}
-            #indexPagination span {
-    font-size: 13px; /* Adjust to desired size */
-                margin-top: 7px;
-    
-}
-            #indexPagination button:last-of-type {
-    margin-right: 15px; /* Adds space after the last button */
-}
-
- /*html {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none; */
-}
-        </style>
-    </head>
-    <body>
-        <div id="title-section" class="section">
-            <h1>Emmanuel A.G. Church Chakan Pune</h1>
-            <input type="text" id="searchBox" placeholder="Search songs..." oninput="searchSongs()" />
+        
+        /* Fix index visibility */
+        #indexContainer {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Remove the comma */
+            /*grid-auto-flow: column; /* Ensures vertical numbering */
+            column-gap: 10px; /* Space between columns */
+            gap: 2px;
+            max-width: 600px;
+            width: 100%;
+            margin: auto;
+            padding-left: 20px;
+            flex-grow: unset;
+        }
+        .index-item {
+            text-align: left;
+            margin: 0; /* Very tight spacing */
+            padding: 2px 0;
+        }
+        .index-item a {
+            text-decoration: none; /* Removes underline by default */
+            color: black; /* Keep visible */
+        }
+        .index-item a:hover,.index-item a:focus {
+            text-decoration: underline; /* Add underline only on hover or focus */
+        }
+        .index-item a.active {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        
+        #searchBox {
+            position: absolute;
+            bottom: 10px; /* Align at the bottom */
+            right: 10px; /* Align to the right */
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+            margin-top: 50px; /* Adds spacing above search box */
+        }
+        
+        /* Carousel styling */
+        .carousel-container {
+            overflow: hidden;
+            max-width: 100vw;
+            position: relative;
+            touch-action: pan-y; /* Prevent horizontal page movement */
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
+        }
+        .song {
+            min-width: 100vw; /* Full screen per song */
+            padding: 10px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        pre {
+            font-family: "Georgia", serif; /* Choose a readable font */
+            font-size: 17px; /* Adjust size for clarity */
+            font-weight: normal; /* Customize thickness */
+            line-height: 1.5; /* Improve spacing */
+            color: #222; /* Adjust text color */
+        }
+        .container {
+            display: flex;
+            flex-direction: column; /* Stack blocks vertically */
+            align-items: center;
+            gap: 10px; /* Space between sections */
+            justify-content: center;
+            width: 100vw; /* Prevent overflow */
+        }
+        
+        .index-block,.lyrics-block {
+            width: 80%; /* Adjust width for balance */
+            max-width: 800px;
+            padding: 8px;
+            border-radius: 10px;
+            min-height: 250px; /* Lower height */
+        }
+        
+        .index-block {
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .lyrics-block {
+            display: flex;
+            flex-direction: column; /* Stack title & lyrics vertically */
+            justify-content: center; /* Center content */
+            align-items: center;
+            text-align: center;
+            width: 80%; /* Allow flexibility */
+            max-width: 800px;
+            min-height: 300px; /* Prevent squeezing */
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            color: black;
+            border-radius: 10px;
+            padding-top: 10px;
+        }
+        
+        /* Ensure lyrics text stays centered */
+        pre {
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+            white-space: pre-wrap; /* Wrap text properly */
+            word-wrap: break-word; /* Prevent overflow */
+        }
+        
+        .lyrics-block {
+            position: relative; /* Ensures absolute elements stay inside */
+            padding-top: 15px; /* Adjust spacing to prevent overlap with buttons */
+        }
+        
+        .controls {
+            position: absolute;
+            top: 10px; /* Push buttons upwards */
+            left: 0;
+            right: 0; /* Stretch across the lyrics block */
+            display: flex;
+            justify-content: space-between; /* Places 'Back' on left, 'Next' on right */
+            padding: 0 10px; /* Adds spacing */
+        }
+        .controls button {
+            background: linear-gradient(to right, #3498db, #2472a3);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .controls button:hover {
+            background: linear-gradient(to right, #2472a3, #3498db);
+            transform: scale(1.05);
+        }
+        
+        .controls button:first-child {
+            margin-left: 15px; /* Adjust this value as needed */
+        }
+        
+        .controls button:last-child {
+            margin-right: 15px; /* Adjust this value as needed */
+        }
+        
+        #indexPagination {
+            margin-top: 15px; /* Adds space above pagination */
+            margin-bottom: 10px; /* Remove extra space below pagination */
+            padding-bottom: 0px; /* Prevent extra padding */
+            position: relative; /* Keeps it inside the section */
+            display: flex;
+            justify-content: center; /* Centers buttons horizontally */
+            width: 100%; /* Ensures it takes up full width */
+            align-self: center;
+            margin-top: auto; /* Pushes pagination to the bottom */
+            position: relative;
+            margin-top: auto;
+            padding-bottom: 5px;
+            text-align: center; /* Ensures button alignment */
+        }
+        #indexPagination button {
+            margin: 0 2px; /* Adds horizontal space between buttons */
+            padding: 4px 8px; /* Keeps button size balanced */
+        }
+        #indexPagination select {
+            border: none; /* Remove default borders */
+            padding: 4px 10px; /* Same padding as buttons */
+            font-size: 14px; /* Match button text size */
+            border-radius: 5px; /* Rounded corners */
+            transition: 0.3s; /* Smooth hover effect */
+            cursor: pointer; /* Indicate interactivity */
+            max-height: 150px; /* Limits how much space it takes when opened */
+            overflow-y: auto; /* Allows scrolling if there are many options */
+        }
+        #indexPagination select option {
+            font-size: 13px; /* Adjust the size of options */
+        }
+        #indexPagination span {
+            font-size: 13px; /* Adjust to desired size */
+            margin-top: 7px;
+        }
+        #indexPagination button:last-of-type {
+            margin-right: 15px; /* Adds space after the last button */
+        }
+    </style>
+  </head>
+  <body>
+    <div id="title-section" class="section">
+      <h1>Emmanuel A.G. Church Chakan Pune</h1>
+      <input
+        type="text"
+        id="searchBox"
+        placeholder="Search songs..."
+        oninput="searchSongs()"
+      />
+    </div>
+    <div class="container">
+      <div id="index-section" class="index-block">
+        <h2 class="heading">Song Index</h2>
+        <div id="indexContainer" class="index-container"></div>
+        <div id="indexPagination" class="pagination"></div>
+      </div>
+      <div id="lyrics-section" class="lyrics-block">
+        <h2 class="heading">Song Lyrics</h2>
+        <div class="carousel-container">
+          <div id="songCarousel" class="carousel"></div>
         </div>
-        <div class="container">
-            <div id="index-section" class="index-block">
-                <h2 class="heading">Song Index</h2>
-                <div id="indexContainer" class="index-container"></div>
-                <div id="indexPagination" class="pagination"></div>
-            </div>
-            <div id="lyrics-section" class="lyrics-block">
-                <h2 class="heading">Song Lyrics</h2>
-                <div class="carousel-container">
-                    <div id="songCarousel" class="carousel"></div>
-                </div>
-                <div class="controls"><button onclick="prevSlide()">&lt;</button> <button onclick="nextSlide()">&gt;</button></div>
-            </div>
+        <div class="controls">
+          <button onclick="prevSlide()">&lt;</button>
+          <button onclick="nextSlide()">&gt;</button>
         </div>
-        <script src="https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/script.js"></script>
-    </body>
+      </div>
+    </div>
+    <script src="https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/script.js"></script>
+  </body>
 </html>
