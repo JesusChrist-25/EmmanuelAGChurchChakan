@@ -52,6 +52,11 @@
                 color: black;
                 padding-bottom: 0px; /* Prevent extra spacing */
     margin-bottom: 0px;
+display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Keeps items from collapsing */
+    align-items: center;
+    min-height: 300px; /* Ensure consistent space */
 
                
             }
@@ -262,9 +267,13 @@
     margin-top: 15px; /* Adds space above pagination */
     margin-bottom: 0px; /* Remove extra space below pagination */
     padding-bottom: 0px; /* Prevent extra padding */
-    position: absolute;
     left: 50%;
     transform: translateX(-50%); /* Centers it */
+    position: relative;
+    align-self: center;
+    margin-top: auto; /* Pushes pagination to the bottom */
+
+
 
 
 }
