@@ -37,6 +37,9 @@
             width: 100%;
             position: relative;
             padding-top: 2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
         
         /* Index Section */
@@ -131,7 +134,11 @@
             text-decoration: underline;
             font-weight: bold;
         }
-        
+        #dropdown {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+        }    
         #searchBox {
             position: absolute;
             bottom: 10px; /* Align at the bottom */
@@ -293,6 +300,11 @@
   <body>
     <div id="title-section" class="section">
       <h1>Emmanuel A.G. Church Chakan Pune</h1>
+      <select id="language">
+        <option value="Hindi">Hindi</option>
+        <option value="Marathi">Marathi</option>
+        <option value="Punjabi">Punjabi</option>
+      </select>
       <input
         type="text"
         id="searchBox"
