@@ -13,9 +13,26 @@
             let touchStartX = 0;
             let touchEndX = 0;
 
+            // Mapping song files to different languages
+const songFiles = {
+  Hindi: "https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/hindi.json",
+  Marathi: "https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/marathi.json",
+  Punjabi: "https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/punjabi.json"
+};
+
+// Function to load songs dynamically based on dropdown selection
+function loadSongs() {
+  const selectedLanguage = document.getElementById("language").value;
+  const filePath = songFiles[selectedLanguage];
+
             // Fetch songs from JSON
-            fetch("https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/songs.json")
-                .then((response) => response.json())
+            fetch(filePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Error loading file: ${filePath}`);
+                    }
+                    return response.json();
+                })
                 .then((data) => {
                     if (data.songs) {
                         songs = data.songs;
@@ -28,6 +45,15 @@
                     }
                 })
                 .catch((error) => console.error("Error loading songs:", error));
+}
+// Attach event listener to dropdown for dynamic updates
+document.getElementById("language").addEventListener("change", loadSongs);
+
+// Load default songs when the page loads
+window.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("language").value = "Hindi"; // Default selection
+  loadSongs();
+});
 
             // Display songs in carousel
             function displayCarousel() {
