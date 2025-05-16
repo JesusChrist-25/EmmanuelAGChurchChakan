@@ -38,10 +38,16 @@
             position: relative;
             padding-top: 2px;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+            flex-direction: column;
         }
-        
+        .bottom-container {
+            display: flex;
+            justify-content: space-between; /* Forces left & right positioning */
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+        }
+
         /* Index Section */
         #index-section {
             background: rgba(255, 255, 255, 0.85); /* Slight transparency */
@@ -135,11 +141,10 @@
             font-weight: bold;
         }
         #dropdown {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            flex: 1;
-        }    
+            flex: 0 1 auto;
+            margin-left: 10px; /* Keeps it at left */
+        }
+ 
         #searchBox {
             position: absolute;
             bottom: 10px; /* Align at the bottom */
@@ -149,7 +154,8 @@
             border-radius: 5px;
             width: 200px;
             margin-top: 50px; /* Adds spacing above search box */
-            flex: 1;
+            flex: 0 1 auto;
+            margin-right: 10px; /* Keeps it at right */
         }
         
         /* Carousel styling */
@@ -302,17 +308,19 @@
   <body>
     <div id="title-section" class="section">
       <h1>Emmanuel A.G. Church Chakan Pune</h1>
-      <select id="language">
-        <option value="Hindi">Hindi</option>
-        <option value="Marathi">Marathi</option>
-        <option value="Punjabi">Punjabi</option>
-      </select>
-      <input
-        type="text"
-        id="searchBox"
-        placeholder="Search songs..."
-        oninput="searchSongs()"
-      />
+      <div class="bottom-container">
+        <select id="language">
+          <option value="Hindi">Hindi</option>
+          <option value="Marathi">Marathi</option>
+          <option value="Punjabi">Punjabi</option>
+        </select>
+        <input
+          type="text"
+          id="searchBox"
+          placeholder="Search songs..."
+          oninput="searchSongs()"
+        />
+      </div>    
     </div>
     <div class="container">
       <div id="index-section" class="index-block">
