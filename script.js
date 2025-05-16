@@ -54,6 +54,11 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("language").value = "Hindi"; // Default selection
   loadSongs();
 });
+searchBox.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") { // Trigger search only on Enter key
+    searchSongs();
+  }
+});
 
             // Display songs in carousel
             function displayCarousel() {
