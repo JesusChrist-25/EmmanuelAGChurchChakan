@@ -54,12 +54,12 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("language").value = "Hindi"; // Default selection
   loadSongs();
 });
-searchBox.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault(); // Prevent default form submission (if applicable)
-    searchSongs(); // Trigger search function
+searchBox.addEventListener("focus", function () {
+  if (searchBox.value.trim() !== "") { // Ensure there's text to search
+    searchSongs(); // Run search immediately on focus
   }
 });
+
 
 
             // Display songs in carousel
