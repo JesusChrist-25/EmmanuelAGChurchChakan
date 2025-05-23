@@ -314,13 +314,17 @@
     <script src="https://s.keyman.com/kmw/engine/18.0.236/kmwuitoggle.js"></script>
     <script>
         function initializeKeyman() {
-            keyman.init({attachType: 'auto'}); 
+        keyman.init({attachType: 'auto'}); 
         
         // Load Hindi Devanagari Phonetic (ITRANS) keyboard
-        keyman.addKeyboards({ id: 'itrans_devanagari_hindi', name: 'Hindi Devanagari Phonetic (ITRANS)', languages: ['hi'] });
-        //keyman.setActiveKeyboard('itrans_devanagari_hindi');
+        keyman.addKeyboards('@itrans_devanagari_hindi'); 
 
-        }
+        // Ensure the keyboard is active for other fields but NOT for the search box
+        keyman.setActiveKeyboard('@itrans_devanagari_hindi');
+
+        // Disable Keyman for the search box
+        document.getElementById('searchBox').setAttribute('data-keyman', 'off');
+    }
         window.onload = initializeKeyman;
     </script>
   </head>
