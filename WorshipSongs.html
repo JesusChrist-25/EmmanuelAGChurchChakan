@@ -310,22 +310,13 @@
             margin-right: 15px; /* Adds space after the last button */
         }
     </style>
-    <script src="https://s.keyman.com/kmw/engine/18.0.236/keymanweb.js"></script>
-    <script src="https://s.keyman.com/kmw/engine/18.0.236/kmwuitoggle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ai4bharat/indic-transliterate/dist/index.js"></script>
     <script>
-        function initializeKeyman() {
-        keyman.init({attachType: 'auto'}); 
-        
-        // Load Hindi Devanagari Phonetic (ITRANS) keyboard
-        keyman.addKeyboards('@itrans_devanagari_hindi'); 
-
-        // Ensure the keyboard is active for other fields but NOT for the search box
-        keyman.setActiveKeyboard('@itrans_devanagari_hindi');
-
-        // Disable Keyman for the search box
-        document.getElementById('searchBox').setAttribute('data-keyman', 'off');
-    }
-        window.onload = initializeKeyman;
+        function transliterateText() {
+            let inputText = document.getElementById("searchBox").value;
+            let transliteratedText = IndicTransliterate.transliterate(inputText, "hi");
+            document.getElementById("searchBox").value = transliteratedText;
+        }
     </script>
   </head>
   <body>
