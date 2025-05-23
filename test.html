@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hindi Transliteration in Search Box</title>
+    
+    <!-- Include Indic Input Tool UI -->
+    <script src="./Indic-Input-Tool-UI/js/api.js"></script>
+    
+    <script>
+        function transliterateText() {
+            let inputText = document.getElementById("searchBox").value;
+            let transliteratedText = IndicTransliterate.transliterate(inputText, "hi");
+            document.getElementById("searchBox").value = transliteratedText;
+        }
+    </script>
+</head>
+<body>
+
+    <h2>Hindi Transliteration in Search Box</h2>
+    <p>Type in English, and it will convert to Hindi script.</p>
+    <input type="text" id="searchBox" placeholder="Type in English..." oninput="transliterateText()">
+
+</body>
+</html>
