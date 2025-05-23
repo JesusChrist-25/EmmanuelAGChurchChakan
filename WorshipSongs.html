@@ -310,6 +310,19 @@
             margin-right: 15px; /* Adds space after the last button */
         }
     </style>
+    <script src="https://s.keyman.com/kmw/engine/18.0.236/keymanweb.js"></script>
+    <script src="https://s.keyman.com/kmw/engine/18.0.236/kmwuitoggle.js"></script>
+    <script>
+        function initializeKeyman() {
+            keyman.init({attachType: 'auto'}); 
+        
+        // Load Hindi Devanagari Phonetic (ITRANS) keyboard
+        keyman.addKeyboards({ id: 'itrans_devanagari_hindi', name: 'Hindi Devanagari Phonetic (ITRANS)', languages: ['hi'] });
+keyman.setActiveKeyboard('itrans_devanagari_hindi');
+
+        }
+        window.onload = initializeKeyman;
+    </script>
   </head>
   <body>
     <div id="title-section" class="section">
