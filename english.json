@@ -1,1 +1,25 @@
-songs[]
+{
+    "songs":[
+        
+        {
+            "id": 1,
+            "title": "Holy, Holy",
+            "lyrics": [
+                "Hallelujah, Hallelujah, for our Lord God Almighty Reign\nHallelujah, Hallelujah, for our Lord God Almighty Reign\nHallelujah\n",
+                "Holy, Holy\nAre you Lord God Almighty\nWorthy is the Lamb\nWorthy is the Lamb\nYou are Holy, Holy,\nAre you Lord God Almighty\nWorthy is the Lamb\nWorthy is the Lamb\nAmen"
+
+            ]
+        },
+        {
+            "id": 2,
+            "title": "Awesome God",
+            "lyrics": [
+                "When He rolls up His sleeves\nHe ain’t just puttin’ on the Ritz\nThere is thunder in His footsteps\nAnd lightning in His fists\nWell the Lord He wasn’t jokin’\nWhen He kicked ’em out of Eden\nIt wasn’t for no reason that He shed His blood\nHis return is very close and so you better be believin’\nThat our God is an Awesome God\n",
+                "Our God is an Awesome God\nHe reigns from heaven above\nWith wisdom power and love\nOur God is an Awesome God\n",
+                "When the sky was starless in the void of the night\nHe spoke into the darkness and created the light\nJudgement and wrath He poured out the Sodom\nMercy and grace He gave us at the cross\nI hope that we have not too quickly forgotten that\nOur God is an Awesome God\n",
+                "Our God is an Awesome God\nHe reigns from heaven above\nWith wisdom power and love\nOur God is an Awesome God (3)"
+
+            ]
+        }               
+    ]
+}
