@@ -15,9 +15,10 @@
 
             // Mapping song files to different languages
 const songFiles = {
-  Hindi: "https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/hindi.json",
-  Marathi: "https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/marathi.json",
-  Punjabi: "https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/punjabi.json"
+    Hindi: "https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/hindi.json",
+    Marathi: "https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/marathi.json",
+    Punjabi: "https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/punjabi.json",
+    English: "https://JesusChrist-25.github.io/EmmanuelAGChurchChakan/english.json"
 };
 
 // Function to load songs dynamically based on dropdown selection
