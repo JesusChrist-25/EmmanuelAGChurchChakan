@@ -280,7 +280,7 @@ function searchSongs() {
 
     indexContainer.innerHTML = ""; // Clear current view
     
-    const threshold = 3; // max distance allowed
+    const threshold = 2; // max distance allowed
     let filteredSongs = songs.filter(song => {
         let songText = `${song.id}. ${song.title}`.toLowerCase();
         let keywords = (song.keywords || []).map(k => k.toLowerCase());
