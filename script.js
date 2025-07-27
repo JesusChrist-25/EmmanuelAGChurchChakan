@@ -319,17 +319,12 @@ function searchSongs() {
 
   return matrix[b.length][a.length];
 }
-    function isSubsetMatch(input, keyword, threshold = 2) {
+    function isSubsetMatch(input, keywordArray, threshold = 2) {
   const inputWords = input.toLowerCase().split(/\s+/);
-  const keywordWords = keyword.toLowerCase().split(/\s+/);
+  const keywordWords = keywordArray.map(k => k.toLowerCase());
 
-  let matchCount = 0;
-  inputWords.forEach(iWord => {
-    if (keywordWords.some(kWord => levenshtein(iWord, kWord) <= threshold)) {
-      matchCount++;
-    }
-  });
-
-  return matchCount === inputWords.length;
+  return inputWords.every(iWord =>
+    keywordWords.some(kWord => levenshtein(iWord, kWord) <= threshold)
+  );
 }
 }
