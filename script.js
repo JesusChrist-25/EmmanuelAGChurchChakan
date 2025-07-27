@@ -286,7 +286,7 @@ function searchSongs() {
         let keywords = (song.keywords || []).map(k => k.toLowerCase());
 
         //return songText.includes(input) || song.id.toString().includes(input) || keywords.some(k => k.includes(input) || levenshtein(k, input) <= threshold || isSubsetMatch(input, k, threshold));
-          return songText.includes(input) || song.id.toString().includes(input) || isSubsetFuzzyMatch(inputLower, keywords, threshold));
+          return songText.includes(input) || song.id.toString().includes(input) || isSubsetFuzzyMatch(inputLower, keywords, threshold);
     });
 
     if (filteredSongs.length === 0) {
