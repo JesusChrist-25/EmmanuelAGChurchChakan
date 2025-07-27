@@ -285,7 +285,7 @@ function searchSongs() {
         let songText = `${song.id}. ${song.title}`.toLowerCase();
         let keywords = (song.keywords || []).map(k => k.toLowerCase());
 
-        return songText.includes(input) || song.id.toString().includes(input) || keywords.some(k => k.includes(input)) || levenshtein(k, input) <= threshold
+        return songText.includes(input) || song.id.toString().includes(input) || keywords.some(k => k.includes(input) || levenshtein(k, input) <= threshold);
     });
 
     if (filteredSongs.length === 0) {
