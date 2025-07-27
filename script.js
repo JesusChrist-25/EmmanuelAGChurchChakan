@@ -295,7 +295,7 @@ function searchSongs() {
   return (
     song.title.toLowerCase().includes(inputLower) ||
     song.id.toString().includes(inputLower) ||
-    isExactSubsetMatch(inputLower, keywords)
+    isPrefixSubsetMatch(inputLower, keywords)
   );
 });
 
@@ -349,5 +349,15 @@ function searchSongs() {
   const keywords = keywordArray.map(k => k.toLowerCase());
 
   return inputWords.every(iWord => keywords.includes(iWord));
+}
+    function isPrefixSubsetMatch(input, keywordArray) {
+  if (!Array.isArray(keywordArray)) return false;
+
+  const inputWords = input.toLowerCase().split(/\s+/);
+  const keywords = keywordArray.map(k => k.toLowerCase());
+
+  return inputWords.every(iWord =>
+    keywords.some(kWord => kWord.startsWith(iWord))
+  );
 }
 }
