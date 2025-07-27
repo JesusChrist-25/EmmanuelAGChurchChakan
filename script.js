@@ -285,7 +285,8 @@ function searchSongs() {
         let songText = `${song.id}. ${song.title}`.toLowerCase();
         let keywords = (song.keywords || []).map(k => k.toLowerCase());
 
-        return songText.includes(input) || song.id.toString().includes(input) || keywords.some(k => k.includes(input) || levenshtein(k, input) <= threshold || isSubsetMatch(input, k, threshold));
+        //return songText.includes(input) || song.id.toString().includes(input) || keywords.some(k => k.includes(input) || levenshtein(k, input) <= threshold || isSubsetMatch(input, k, threshold));
+          return songText.includes(input) || song.id.toString().includes(input) || isSubsetFuzzyMatch(inputLower, keywords, threshold));
     });
 
     if (filteredSongs.length === 0) {
@@ -319,12 +320,15 @@ function searchSongs() {
 
   return matrix[b.length][a.length];
 }
-    function isSubsetMatch(input, keywordArray, threshold = 2) {
-  const inputWords = input.toLowerCase().split(/\s+/);
-  const keywordWords = keywordArray.map(k => k.toLowerCase());
+    function isSubsetFuzzyMatch(input, keywordArray, threshold = 2) {
+  if (!Array.isArray(keywordArray)) return false;
 
+  const inputWords = input.toLowerCase().split(/\s+/);
+  const keywords = keywordArray.map(k => k.toLowerCase());
+
+  // Check that EVERY word from input roughly matches something in keywords
   return inputWords.every(iWord =>
-    keywordWords.some(kWord => levenshtein(iWord, kWord) <= threshold)
+    keywords.some(kWord => levenshtein(iWord, kWord) <= threshold)
   );
 }
 }
