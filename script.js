@@ -336,9 +336,10 @@ function searchSongs() {
   const inputWords = input.toLowerCase().split(/\s+/);
   const keywords = keywordArray.map(k => k.toLowerCase());
 
-  // Check that EVERY word from input roughly matches something in keywords
   return inputWords.every(iWord =>
-    keywords.some(kWord => levenshtein(iWord, kWord) <= threshold)
+    keywords.some(kWord =>
+      kWord === iWord || levenshtein(iWord, kWord) <= threshold
+    )
   );
 }
 }
