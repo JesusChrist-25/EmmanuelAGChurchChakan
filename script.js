@@ -281,13 +281,23 @@ function searchSongs() {
     indexContainer.innerHTML = ""; // Clear current view
     
     const threshold = 2; // max distance allowed
-    let filteredSongs = songs.filter(song => {
+/*    let filteredSongs = songs.filter(song => {
         let songText = `${song.id}. ${song.title}`.toLowerCase();
         let keywords = (song.keywords || []).map(k => k.toLowerCase());
 
         //return songText.includes(input) || song.id.toString().includes(input) || keywords.some(k => k.includes(input) || levenshtein(k, input) <= threshold || isSubsetMatch(input, k, threshold));
           return songText.includes(input) || song.id.toString().includes(input) || isSubsetFuzzyMatch(inputLower, keywords, threshold);
-    });
+    }); */
+    let filteredSongs = songs.filter(song => {
+  let inputLower = input.toLowerCase();
+  let keywords = Array.isArray(song.keywords) ? song.keywords.map(k => k.toLowerCase()) : [];
+
+  return (
+    song.title.toLowerCase().includes(inputLower) ||
+    song.id.toString().includes(inputLower) ||
+    isSubsetFuzzyMatch(inputLower, keywords, threshold)
+  );
+});
 
     if (filteredSongs.length === 0) {
         indexContainer.innerHTML = "<p>No matching songs found.</p>";
