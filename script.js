@@ -285,7 +285,7 @@ function searchSongs() {
         let songText = `${song.id}. ${song.title}`.toLowerCase();
         let keywords = (song.keywords || []).map(k => k.toLowerCase());
 
-        return songText.includes(input) || song.id.toString().includes(input) || keywords.some(k => k.includes(input) || levenshtein(k, input) <= threshold);
+        return songText.includes(input) || song.id.toString().includes(input) || keywords.some(k => k.includes(input) || levenshtein(k, input) <= threshold || isSubsetMatch(input, k, threshold));
     });
 
     if (filteredSongs.length === 0) {
@@ -318,5 +318,18 @@ function searchSongs() {
   }
 
   return matrix[b.length][a.length];
+}
+    function isSubsetMatch(input, keyword, threshold = 2) {
+  const inputWords = input.toLowerCase().split(/\s+/);
+  const keywordWords = keyword.toLowerCase().split(/\s+/);
+
+  let matchCount = 0;
+  inputWords.forEach(iWord => {
+    if (keywordWords.some(kWord => levenshtein(iWord, kWord) <= threshold)) {
+      matchCount++;
+    }
+  });
+
+  return matchCount === inputWords.length;
 }
 }
