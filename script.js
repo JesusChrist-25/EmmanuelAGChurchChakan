@@ -83,7 +83,7 @@ searchBox.addEventListener("focus", function () {
 
   songCarousel.innerHTML = songs
     .map(song => {
-      const audioPath = `audio/${selectedLanguage}/${song.title}.mp3`;
+      const audioPath = `Audio/${selectedLanguage}/${song.filename}.mp3`;
       return `
         <div class="song">
           <h2 class="lyricsTitle">${song.id}. ${song.title}</h2>
