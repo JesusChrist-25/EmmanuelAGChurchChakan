@@ -64,19 +64,40 @@ searchBox.addEventListener("focus", function () {
 
 
             // Display songs in carousel
+        /*    function displayCarousel() {
+               const songCarousel = document.getElementById("songCarousel");
+               songCarousel.innerHTML = songs
+              .map(
+                  (song) => `
+                    <div class="song">
+                        <h2 class="lyricsTitle">${song.id}. ${song.title}</h2> <!-- Uses ID from JSON -->
+                        <pre>${song.lyrics.join("\n")}</pre>
+                    </div>
+    `             )
+              .join("");
+            } */
+
             function displayCarousel() {
-                const songCarousel = document.getElementById("songCarousel");
-                songCarousel.innerHTML = songs
-                    .map(
-                        (song) => `
+  const songCarousel = document.getElementById("songCarousel");
+  const selectedLanguage = document.getElementById("language").value;
+
+  songCarousel.innerHTML = songs
+    .map(song => {
+      const audioPath = `audio/${selectedLanguage}/${song.title}.mp3`;
+      return `
         <div class="song">
-            <h2 class="lyricsTitle">${song.id}. ${song.title}</h2> <!-- Uses ID from JSON -->
-            <pre>${song.lyrics.join("\n")}</pre>
+          <h2 class="lyricsTitle">${song.id}. ${song.title}</h2>
+          <audio controls>
+            <source src="${audioPath}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+          <pre>${song.lyrics.join("\n")}</pre>
         </div>
-    `
-                    )
-                    .join("");
-            }
+      `;
+    })
+    .join("");
+}
+
 
             // Navigate songs
    function updateSlide() {
