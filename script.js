@@ -89,7 +89,7 @@ searchBox.addEventListener("focus", function () {
           <h2 class="lyricsTitle">${song.id}. ${song.title}</h2>
           <div style="width: 100%; max-width: 600px; margin: auto;">
               <audio controls>
-                <source src="path-to-your-audio.mp3" type="audio/mpeg">
+                <source src="${audioPath}" type="audio/mpeg">
                 Your browser does not support the audio element.
               </audio>
             </div>
