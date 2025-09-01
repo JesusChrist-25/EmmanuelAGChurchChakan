@@ -100,13 +100,7 @@ searchBox.addEventListener("focus", function () {
     })
     .join("");
 
-                const heading = document.getElementById("lyrics-heading");
-heading.innerHTML = `
-  <audio controls>
-    <source src="${audioPath}" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-`;
+
 }
 
 
