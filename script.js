@@ -77,14 +77,16 @@ searchBox.addEventListener("focus", function () {
               .join("");
             } */
 
-           function displayCarousel() {
+    function displayCarousel() {
   const songCarousel = document.getElementById("songCarousel");
   const selectedLanguage = document.getElementById("language").value;
 
   songCarousel.innerHTML = songs
     .map(song => {
-      const hasFilename = song.filename && song.filename.trim() !== "";
-      const encodedFilename = encodeURIComponent(song.filename.trim());
+      const hasFilename = typeof song.filename === "string" && song.filename.trim() !== "";
+      const encodedFilename = hasFilename
+        ? encodeURIComponent(song.filename.trim())
+        : null;
 
       const audioHTML = hasFilename
         ? `<audio controls>
