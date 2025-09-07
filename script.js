@@ -95,9 +95,11 @@ function loadAudioOnly(title) {
   const encodedTitle = encodeURIComponent(title.trim());
   const audioPath = `Audio/${selectedLanguage}/${encodedTitle}.mp3`;
 
-  audioContainer.innerHTML = ""; // Clear previous audio
+  // Show loading message immediately
+  audioContainer.innerHTML = `<p style="color: gray;">Preparing audio...</p>`;
 
-  // Use GET with no-store to avoid caching and avoid injecting <audio> prematurely
+
+ // Use GET with no-store to avoid caching and avoid injecting <audio> prematurely
   fetch(audioPath, {
     method: "GET",
     headers: { "Cache-Control": "no-store" }
