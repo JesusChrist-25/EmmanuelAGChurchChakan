@@ -86,14 +86,21 @@ function loadAudioOnly(title) {
 
   audioContainer.innerHTML = ""; // Clear previous audio
 
+  // Use HEAD request to check if file exists before injecting <audio>
   fetch(audioPath, { method: "HEAD" })
     .then(response => {
-      audioContainer.innerHTML = response.ok
-        ? `<audio controls>
-             <source src="${audioPath}" type="audio/mpeg">
-             Your browser does not support the audio element.
-           </audio>`
-        : `<p style="color: gray;">Audio not available for this song.</p>`;
+      if (response.ok) {
+        // Only inject <audio> if file exists
+        audioContainer.innerHTML = `
+          <audio controls>
+            <source src="${audioPath}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        `;
+      } else {
+        // No <audio> tag injected → no 404 in console
+        audioContainer.innerHTML = `<p style="color: gray;">Audio not available for this song.</p>`;
+      }
     })
     .catch(() => {
       audioContainer.innerHTML = `<p style="color: gray;">Audio could not be loaded.</p>`;
