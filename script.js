@@ -90,7 +90,7 @@ searchBox.addEventListener("focus", function () {
 
       const audioHTML = hasTitle
         ? `<audio controls>
-             <source src="audio/${selectedLanguage}/${encodedTitle}.mp3" type="audio/mpeg">
+             <source src="Audio/${selectedLanguage}/${encodedTitle}.mp3" type="audio/mpeg">
              Your browser does not support the audio element.
            </audio>`
         : `<p style="color: gray;">Audio not available for this song.</p>`;
