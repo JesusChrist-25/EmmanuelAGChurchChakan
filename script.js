@@ -54,6 +54,7 @@ document.getElementById("language").addEventListener("change", loadSongs);
 window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("language").value = "Hindi"; // Default selection
   loadSongs();
+    
 });
 searchBox.addEventListener("focus", function () {
   if (searchBox.value.trim() !== "") { // Ensure there's text to search
@@ -76,6 +77,28 @@ searchBox.addEventListener("focus", function () {
     `             )
               .join("");
             } 
+function loadAudioOnly(title) {
+  const selectedLanguage = document.getElementById("language").value;
+  const audioContainer = document.getElementById("audioPlayer");
+
+  const encodedTitle = encodeURIComponent(title.trim());
+  const audioPath = `Audio/${selectedLanguage}/${encodedTitle}.mp3`;
+
+  audioContainer.innerHTML = ""; // Clear previous audio
+
+  fetch(audioPath, { method: "HEAD" })
+    .then(response => {
+      audioContainer.innerHTML = response.ok
+        ? `<audio controls>
+             <source src="${audioPath}" type="audio/mpeg">
+             Your browser does not support the audio element.
+           </audio>`
+        : `<p style="color: gray;">Audio not available for this song.</p>`;
+    })
+    .catch(() => {
+      audioContainer.innerHTML = `<p style="color: gray;">Audio could not be loaded.</p>`;
+    });
+}
 
     
 
@@ -224,6 +247,13 @@ function updateIndexHighlight() {
 
                 displayCarousel(); // Ensure lyrics update
                 updateSlide(); // Sync navigation correctly
+
+                // Load audio for selected song
+                  const selectedSong = songs[currentIndex];
+                  if (selectedSong && selectedSong.title) {
+                    loadAudioOnly(selectedSong.title);
+                  }
+
             }
             // Add touch tracking for index block scrolling
 let indexTouchStartX = 0;
