@@ -108,7 +108,7 @@ function loadAudioOnly(title) {
       if (response.ok) {
         // Inject <audio> only if file exists
         audioContainer.innerHTML = `
-          <audio controls>
+          <audio controls preload="metadata">
             <source src="${audioPath}" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
