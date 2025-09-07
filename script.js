@@ -77,18 +77,18 @@ searchBox.addEventListener("focus", function () {
               .join("");
             } */
 
-            function displayCarousel() {
+           function displayCarousel() {
   const songCarousel = document.getElementById("songCarousel");
   const selectedLanguage = document.getElementById("language").value;
 
   songCarousel.innerHTML = songs
     .map(song => {
-      const hasTitle = song.title && song.title.trim() !== "";
-      const encodedTitle = encodeURIComponent(song.title.trim());
+      const hasFilename = song.filename && song.filename.trim() !== "";
+      const encodedFilename = encodeURIComponent(song.filename.trim());
 
-      const audioHTML = hasTitle
+      const audioHTML = hasFilename
         ? `<audio controls>
-             <source src="audio/${selectedLanguage}/${encodedTitle}.mp3" type="audio/mpeg">
+             <source src="audio/${selectedLanguage}/${encodedFilename}.mp3" type="audio/mpeg">
              Your browser does not support the audio element.
            </audio>`
         : `<p style="color: gray;">Audio not available for this song.</p>`;
