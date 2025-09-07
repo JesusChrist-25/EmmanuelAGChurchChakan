@@ -64,7 +64,7 @@ searchBox.addEventListener("focus", function () {
 
 
             // Display songs in carousel
-        /*    function displayCarousel() {
+            function displayCarousel() {
                const songCarousel = document.getElementById("songCarousel");
                songCarousel.innerHTML = songs
               .map(
@@ -75,49 +75,10 @@ searchBox.addEventListener("focus", function () {
                     </div>
     `             )
               .join("");
-            } */
+            } 
 
-    function displayCarousel() {
-  const songCarousel = document.getElementById("songCarousel");
+    
 
-  songCarousel.innerHTML = songs
-    .map(song => `
-      <div class="song" onclick="loadAudio('${song.title}', '${song.id}')">
-        <h2 class="lyricsTitle">${song.id}. ${song.title}</h2>
-        <pre>${song.lyrics.join("\n")}</pre>
-        <div id="audio-${song.id}" class="audio-container"></div>
-      </div>
-    `)
-    .join("");
-}
-function loadAudio(title, id) {
-  const selectedLanguage = document.getElementById("language").value;
-  const audioContainer = document.getElementById(`audio-${id}`);
-
-  // Prevent duplicate loading
-  if (audioContainer.innerHTML.trim() !== "") return;
-
-  const encodedTitle = encodeURIComponent(title.trim());
-  const audioPath = `Audio/${selectedLanguage}/${encodedTitle}.mp3`;
-
-  // Check if file exists before injecting
-  fetch(audioPath, { method: "HEAD" })
-    .then(response => {
-      if (response.ok) {
-        audioContainer.innerHTML = `
-          <audio controls>
-            <source src="${audioPath}" type="audio/mpeg">
-            Your browser does not support the audio element.
-          </audio>
-        `;
-      } else {
-        audioContainer.innerHTML = `<p style="color: gray;">Audio not available for this song.</p>`;
-      }
-    })
-    .catch(() => {
-      audioContainer.innerHTML = `<p style="color: gray;">Audio could not be loaded.</p>`;
-    });
-}
 
             // Navigate songs
    function updateSlide() {
