@@ -41,20 +41,30 @@ function loadSongs() {
                         displayIndex();
                         currentIndex = 0; // Set default to first song
                         updateSlide(); // Ensure highlighting works
+                        const firstSong = songs[0];
+                        if (firstSong && firstSong.title) {
+                          loadAudioOnly(firstSong.title);
+                        }
+
                     } else {
                         console.error("Invalid JSON structure: Missing 'songs' key");
                     }
                 })
                 .catch((error) => console.error("Error loading songs:", error));
 }
-// Attach event listener to dropdown for dynamic updates
-document.getElementById("language").addEventListener("change", loadSongs);
 
-// Load default songs when the page loads
+// Attach event listener to dropdown for dynamic updates
+document.getElementById("language").addEventListener("change", () => {
+  const selectedLanguage = document.getElementById("language").value;
+  localStorage.setItem("selectedLanguage", selectedLanguage); // Save to browser
+  loadSongs(); // Load new songs
+});
+
+// Load default songs when the page loads  -- remeber last selection
 window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("language").value = "Hindi"; // Default selection
+  const savedLanguage = localStorage.getItem("selectedLanguage") || "Hindi";
+  document.getElementById("language").value = savedLanguage;
   loadSongs();
-    
 });
 searchBox.addEventListener("focus", function () {
   if (searchBox.value.trim() !== "") { // Ensure there's text to search
