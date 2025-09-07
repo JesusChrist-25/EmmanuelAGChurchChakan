@@ -115,11 +115,13 @@ function loadAudioOnly(title) {
         `;
       } else {
         // Do NOT inject <audio> if file is missing
-        audioContainer.innerHTML = `<p style="color: gray;">Audio not available for this song.</p>`;
+          audioContainer.innerHTML = `<span style="color: gray; font-size: 1em;">Audio not available for this song.</span>`;
+     
       }
     })
     .catch(() => {
-      audioContainer.innerHTML = `<p style="color: gray;">Audio could not be loaded.</p>`;
+        audioContainer.innerHTML = `<span style="color: gray; font-size: 1em;">Audio could not be loaded.</span>`;
+
     });
 }
 
