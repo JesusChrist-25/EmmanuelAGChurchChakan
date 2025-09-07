@@ -76,7 +76,8 @@ searchBox.addEventListener("focus", function () {
                     </div>
     `             )
               .join("");
-            } 
+            }
+
 function loadAudioOnly(title) {
   const selectedLanguage = document.getElementById("language").value;
   const audioContainer = document.getElementById("audioPlayer");
@@ -86,11 +87,14 @@ function loadAudioOnly(title) {
 
   audioContainer.innerHTML = ""; // Clear previous audio
 
-  // Use HEAD request to check if file exists before injecting <audio>
-  fetch(audioPath, { method: "HEAD" })
+  // Use GET with no-store to avoid caching and avoid injecting <audio> prematurely
+  fetch(audioPath, {
+    method: "GET",
+    headers: { "Cache-Control": "no-store" }
+  })
     .then(response => {
       if (response.ok) {
-        // Only inject <audio> if file exists
+        // Inject <audio> only if file exists
         audioContainer.innerHTML = `
           <audio controls>
             <source src="${audioPath}" type="audio/mpeg">
@@ -98,7 +102,7 @@ function loadAudioOnly(title) {
           </audio>
         `;
       } else {
-        // No <audio> tag injected → no 404 in console
+        // Do NOT inject <audio> if file is missing
         audioContainer.innerHTML = `<p style="color: gray;">Audio not available for this song.</p>`;
       }
     })
