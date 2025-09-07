@@ -142,6 +142,10 @@ function loadAudioOnly(title) {
     }
 
     updateIndexHighlight(); // Ensure highlighting updates
+       const selectedSong = songs[currentIndex];
+        if (selectedSong && selectedSong.title) {
+          loadAudioOnly(selectedSong.title);
+        }
 }
 
 
