@@ -83,24 +83,25 @@ searchBox.addEventListener("focus", function () {
 
   songCarousel.innerHTML = songs
     .map(song => {
-      const audioPath = `Audio/${selectedLanguage}/${song.filename}.mp3`;
+      const hasTitle = song.title && song.title.trim() !== "";
+      const encodedTitle = encodeURIComponent(song.title.trim());
+
+      const audioHTML = hasTitle
+        ? `<audio controls>
+             <source src="audio/${selectedLanguage}/${encodedTitle}.mp3" type="audio/mpeg">
+             Your browser does not support the audio element.
+           </audio>`
+        : `<p style="color: gray;">Audio not available for this song.</p>`;
+
       return `
         <div class="song">
           <h2 class="lyricsTitle">${song.id}. ${song.title}</h2>
-          
-              <audio controls>
-                <source src="${audioPath}" type="audio/mpeg">
-                Your browser does not support the audio element.
-              </audio>
-            
-
+          ${audioHTML}
           <pre>${song.lyrics.join("\n")}</pre>
         </div>
       `;
     })
     .join("");
-
-
 }
 
 
